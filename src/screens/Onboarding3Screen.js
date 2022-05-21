@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { storeData } from "../functions/localStorageFunctions";
+import { storeData } from "../functions/LocalStorageFunctions";
 
 const Onboarding3Screen = ({ navigation }) => {
   const handleOnPress = () => {
-    storeData({ onboardingDone: true });
+    storeData("onboarding", true);
     navigation.replace("Auth");
   };
 

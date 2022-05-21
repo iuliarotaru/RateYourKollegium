@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
@@ -22,11 +22,6 @@ export default function App() {
         <Stack.Screen
           name="Loading"
           component={LoadingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -55,14 +50,27 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={({ navigation }) => ({
+            headerLeft: () => (
+              <Button onPress={() => navigation.goBack()} title="Back" />
+            ),
+          })}
+        />
+        <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ headerShown: false }}
+          options={({ navigation }) => ({
+            headerLeft: () => (
+              <Button onPress={() => navigation.goBack()} title="Back" />
+            ),
+          })}
         />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>
