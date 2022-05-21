@@ -14,7 +14,7 @@ const AuthScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("Login")}
         title="Login"
       ></Button>
-      <TouchableOpacity onPress={() => navigation.replace("Home")}>
+      <TouchableOpacity onPress={() => navigation.replace("Main")}>
         <Text>Continue without registering</Text>
       </TouchableOpacity>
     </SafeAreaView>

@@ -3,14 +3,14 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { auth } from "../config/firebase";
 
-const HomeScreen = ({ navigation }) => {
+const ManageScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <Text>home screen</Text>
+      <Text>manage screen</Text>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default ManageScreen;
 
 const styles = StyleSheet.create({});
