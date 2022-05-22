@@ -10,6 +10,8 @@ import {
   getDoc,
   onSnapshot,
   collection,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
@@ -25,4 +27,19 @@ export const getKollegiums = (setKollegiums) => {
   );
 
   return kollegiumsUnsubscribe;
+};
+
+export const addCommentsToKollegium = async (
+  comment,
+  username,
+  kollegiumId
+) => {
+  //Reference to the current kollegium
+  const kollegiumRef = doc(db, "kollegiums", kollegiumId);
+
+  await updateDoc(kollegiumRef, {
+    comments: arrayUnion({ username, text: comment }),
+  });
+
+  console.log(comment, username, kollegiumId);
 };
