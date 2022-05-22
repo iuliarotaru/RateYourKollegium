@@ -15,7 +15,11 @@ const MainScreen = ({ navigation }) => {
 
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Discover" component={DiscoverScreen} />
       {user?.role === "admin" && (
         <Tab.Screen name="Manage" component={ManageScreen} />
