@@ -1,15 +1,11 @@
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from "../config/firebase";
 import { useEffect, useState } from "react";
-import {
-  addCommentsToKollegium,
-  getKollegiums,
-} from "../functions/KollegiumsFunctions";
+import { addCommentsToKollegium } from "../../functions/KollegiumsFunctions";
 import { useRecoilState } from "recoil";
-import { kollegiumsAtom } from "../atoms/KollegiumsAtom";
-import { userAtom } from "../atoms/UserAtom";
+import { kollegiumsAtom } from "../../atoms/KollegiumsAtom";
+import { userAtom } from "../../atoms/UserAtom";
 import { Alert } from "react-native";
 
 const KollegiumsDetailsScreen = ({ navigation, route }) => {

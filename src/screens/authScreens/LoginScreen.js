@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { login } from "./../functions/AuthFunctions";
+import { login } from "../../functions/AuthFunctions";
 import { useState } from "react";
+import { TouchableOpacity } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,9 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         placeholder="password"
       />
+      <TouchableOpacity onPress={() => navigation.replace("ResetPassword")}>
+        <Text>Forgot password?</Text>
+      </TouchableOpacity>
       <Button onPress={() => handleLogin()} title="Login"></Button>
     </SafeAreaView>
   );

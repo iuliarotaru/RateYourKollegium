@@ -1,9 +1,5 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from "../config/firebase";
-import { useEffect, useState } from "react";
-import { getKollegiums } from "../functions/KollegiumsFunctions";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import KollegiumsScreen from "./KollegiumsScreen";
 import KollegiumsDetailsScreen from "./KollegiumsDetailsScreen";

@@ -2,17 +2,18 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
-import Onboarding1Screen from "./src/screens/Onboarding1Screen";
-import Onboarding2Screen from "./src/screens/Onboarding2Screen";
-import Onboarding3Screen from "./src/screens/Onboarding3Screen";
-import AuthScreen from "./src/screens/AuthScreen";
-import RegisterScreen from "./src/screens/RegisterScreen";
-import LoginScreen from "./src/screens/LoginScreen";
+import WelcomeScreen from "./src/screens/onboardingScreens/WelcomeScreen";
+import Onboarding1Screen from "./src/screens/onboardingScreens/Onboarding1Screen";
+import Onboarding2Screen from "./src/screens/onboardingScreens/Onboarding2Screen";
+import Onboarding3Screen from "./src/screens/onboardingScreens/Onboarding3Screen";
+import AuthScreen from "./src/screens/authScreens/AuthScreen";
+import RegisterScreen from "./src/screens/authScreens/RegisterScreen";
+import LoginScreen from "./src/screens/authScreens/LoginScreen";
 import MainScreen from "./src/screens/MainScreen";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import "./src/config/firebase";
 import { RecoilRoot } from "recoil";
+import ResetPasswordScreen from "./src/screens/authScreens/ResetPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,24 +52,9 @@ export default function App() {
             component={AuthScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={({ navigation }) => ({
-              headerLeft: () => (
-                <Button onPress={() => navigation.goBack()} title="Back" />
-              ),
-            })}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={({ navigation }) => ({
-              headerLeft: () => (
-                <Button onPress={() => navigation.goBack()} title="Back" />
-              ),
-            })}
-          />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
           <Stack.Screen
             name="Main"
             component={MainScreen}

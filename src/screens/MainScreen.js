@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import ProfileScreen from "./ProfileScreen";
-import DiscoverScreen from "./DiscoverScreen";
-import HomeScreen from "./HomeScreen";
+import DiscoverScreen from "./discoverScreens/DiscoverScreen";
+import HomeScreen from "./homeScreens/HomeScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/UserAtom";
@@ -20,7 +20,11 @@ const MainScreen = ({ navigation }) => {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Discover" component={DiscoverScreen} />
+      <Tab.Screen
+        name="Discover"
+        component={DiscoverScreen}
+        options={{ headerShown: false }}
+      />
       {user?.role === "admin" && (
         <Tab.Screen name="Manage" component={ManageScreen} />
       )}

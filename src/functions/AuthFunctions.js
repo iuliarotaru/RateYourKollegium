@@ -6,6 +6,7 @@ import { Alert } from "react-native";
 import { auth, db, storage } from "../config/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export const register = async (username, email, password, school, contract) => {
   try {
@@ -46,6 +47,15 @@ export const getUser = async () => {
       user.role = data.role;
     }
     return user;
+  } catch (error) {
+    Alert.alert("Error", error.message);
+  }
+};
+
+export const resetPassword = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return true;
   } catch (error) {
     Alert.alert("Error", error.message);
   }

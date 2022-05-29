@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
-import { register } from "./../functions/AuthFunctions";
+import { register } from "../../functions/AuthFunctions";
 import { Alert } from "react-native";
 import { getDocumentAsync } from "expo-document-picker";
 

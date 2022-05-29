@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from "../config/firebase";
-import { useEffect, useState } from "react";
-import { getKollegiums } from "../functions/KollegiumsFunctions";
+import { useEffect } from "react";
+import { getKollegiums } from "../../functions/KollegiumsFunctions";
 import { TouchableOpacity } from "react-native";
 import { useRecoilState } from "recoil";
-import { kollegiumsAtom } from "../atoms/KollegiumsAtom";
+import { kollegiumsAtom } from "../../atoms/KollegiumsAtom";
 
 const KollegiumsScreen = ({ navigation }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
