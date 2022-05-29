@@ -15,6 +15,12 @@ const ProfileScreen = ({ navigation }) => {
       <Text>{user?.email}</Text>
       <Text>{user?.school}</Text>
       {user && <Button onPress={() => auth.signOut()} title="Signout"></Button>}
+      {!user && (
+        <Button
+          onPress={() => navigation.replace("Auth")}
+          title="Sign up or log in"
+        ></Button>
+      )}
     </SafeAreaView>
   );
 };

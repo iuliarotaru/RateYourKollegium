@@ -13,7 +13,9 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 
 export const getKollegiums = (setKollegiums) => {
   const kollegiumsUnsubscribe = onSnapshot(
@@ -31,15 +33,30 @@ export const getKollegiums = (setKollegiums) => {
 
 export const addCommentsToKollegium = async (
   comment,
+  image,
+  rating,
   username,
   kollegiumId
 ) => {
   //Reference to the current kollegium
   const kollegiumRef = doc(db, "kollegiums", kollegiumId);
 
-  await updateDoc(kollegiumRef, {
-    comments: arrayUnion({ username, text: comment }),
-  });
+  if (image) {
+    const storageRef = ref(storage, `comments/${uuidv4()}`);
+    const fileSnapshot = await uploadBytes(storageRef, image);
+  }
 
-  console.log(comment, username, kollegiumId);
+  await updateDoc(kollegiumRef, {
+    comments: arrayUnion({
+      username,
+      text: comment,
+      image: image ? fileSnapshot.metadata.fullPath : "",
+      rating,
+    }),
+  });
+};
+
+export const getImageUrl = async (path, setImage) => {
+  const downloadedUrl = await getDownloadURL(ref(storage, path));
+  setImage(downloadedUrl);
 };

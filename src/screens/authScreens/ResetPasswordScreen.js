@@ -20,7 +20,6 @@ const ResetPasswordScreen = ({ navigation }) => {
         },
       ]);
     }
-    console.log(success);
   };
 
   return (
