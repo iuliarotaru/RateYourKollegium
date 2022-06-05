@@ -45,6 +45,7 @@ export const getUser = async () => {
       user.school = data.school;
       user.contract = data.contract;
       user.role = data.role;
+      user.savedKollegiums = data.savedKollegiums
     }
     return user;
   } catch (error) {

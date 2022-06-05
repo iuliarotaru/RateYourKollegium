@@ -1,16 +1,25 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { StyleSheet, Text, View, Button } from "react-native";
+import React from "react";
+import { Containers } from "../../styles/Theme";
+import { SafeAreaView } from "react-native-safe-area-context";
+import PrimaryButton from "../../components/PrimaryButton";
 
-const Onboarding2Screen = ({navigation}) => {
+const Onboarding2Screen = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text>Onboarding2Screen</Text>
-      <Button onPress={() => navigation.replace('Onboarding3')} title="Next"></Button>
+      <PrimaryButton
+        onPress={() => navigation.replace("Onboarding3")}
+        title="Next"
+      ></PrimaryButton>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default Onboarding2Screen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    ...Containers.main,
+  },
+});

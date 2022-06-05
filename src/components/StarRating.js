@@ -7,7 +7,7 @@ export default function StarRating({ rating, setRating }) {
     setRating(rate);
   };
   return (
-    <View>
+    <View style={styles.starRating}>
       {[...Array(5)].map((el, index) => (
         <TouchableOpacity
           onPress={() => {
@@ -16,11 +16,19 @@ export default function StarRating({ rating, setRating }) {
           key={`star-rating-${index}`}
           disabled={setRating ? false : true}
         >
-          <FontAwesome name={index + 1 <= rating ? "star" : "star-o"} />
+          <FontAwesome
+            name={index + 1 <= rating ? "star" : "star-o"}
+            size={17}
+            color={index + 1 <= rating ? "orange" : "black"}
+          />
         </TouchableOpacity>
       ))}
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  starRating: {
+    flexDirection: "row",
+  },
+});

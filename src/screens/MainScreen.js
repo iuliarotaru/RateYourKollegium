@@ -7,6 +7,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/UserAtom";
 import ManageScreen from "./ManageScreen";
+import { Colors } from "../styles/Theme";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,21 +16,53 @@ const MainScreen = ({ navigation }) => {
   const [user, setUser] = useRecoilState(userAtom);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.gray,
+        headerShown: false,
+      })}
+    >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{ headerShown: false }}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="home" color={color} size={size} />
+          ),
+        }}
       />
       <Tab.Screen
         name="Discover"
         component={DiscoverScreen}
-        options={{ headerShown: false }}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="search" color={color} size={size} />
+          ),
+        }}
       />
       {user?.role === "admin" && (
-        <Tab.Screen name="Manage" component={ManageScreen} />
+        <Tab.Screen
+          name="Manage"
+          component={ManageScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="cog" color={color} size={size} />
+            ),
+            headerShown: true,
+          }}
+        />
       )}
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user" color={color} size={size} />
+          ),
+          headerShown: true,
+        }}
+      />
     </Tab.Navigator>
   );
 };

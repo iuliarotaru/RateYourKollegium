@@ -1,22 +1,31 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
+import { Containers } from "../../styles/Theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { storeData } from "../../functions/LocalStorageFunctions";
+import PrimaryButton from "../../components/PrimaryButton";
 
 const Onboarding3Screen = ({ navigation }) => {
   const handleOnPress = () => {
-    storeData("onboarding", true);
+    storeData("onboarding", false); //true TODO: change back
     navigation.replace("Auth");
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text>Onboarding3Screen</Text>
-      <Button onPress={() => handleOnPress()} title="Next"></Button>
+      <PrimaryButton
+        onPress={() => handleOnPress()}
+        title="Next"
+      ></PrimaryButton>
     </SafeAreaView>
   );
 };
 
 export default Onboarding3Screen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    ...Containers.main,
+  },
+});
