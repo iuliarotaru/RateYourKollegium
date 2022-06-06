@@ -2,12 +2,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  ScrollView,
   FlatList,
   TouchableOpacity,
 } from "react-native";
 import { useEffect } from "react";
-import { ScrollView } from "react-native";
 import { auth } from "../config/firebase";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/UserAtom";
@@ -62,18 +61,38 @@ const ProfileScreen = ({ navigation }) => {
             <Text style={styles.profileTitle}>School</Text>
             <Text style={styles.profileText}>{user?.school}</Text>
 
+            <PrimaryButton
+              onPress={() => auth.signOut()}
+              title="Signout"
+              style={{
+                alignSelf: "center",
+                marginTop: 10,
+                marginBottom: 25,
+                flex: 0,
+              }}
+            ></PrimaryButton>
+
             <Text style={[styles.profileTitle, { marginBottom: 10 }]}>
-              Saved Kollegiums
+              Saved Kollegiums ({user.savedKollegiums.length})
             </Text>
 
             <View style={styles.savedKollegiumsList}>
-              <FlatList
-                data={user?.savedKollegiums}
-                keyExtractor={(kollegium) => `${kollegium}-${Math.random()}`}
-                renderItem={renderKollegium}
-                numColumns={2}
-                columnWrapperStyle={{ justifyContent: "space-between" }}
-              />
+              {user?.savedKollegiums.map((savedKollegium) => {
+                const kollegium = kollegiums.find(
+                  (k) => k.id === savedKollegium
+                );
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleSavedKollegiumPress(kollegium.id);
+                    }}
+                    style={styles.savedKollegiumContainer}
+                    key={`saved-kollegium-${kollegium.id}-${Math.random()}`}
+                  >
+                    <KollegiumSavedCard kollegium={kollegium} />
+                  </TouchableOpacity>
+                );
+              })}
             </View>
           </>
         )}
@@ -83,14 +102,6 @@ const ProfileScreen = ({ navigation }) => {
             onPress={() => navigation.replace("Auth")}
             title="Sign up or log in"
             style={{ alignSelf: "center" }}
-          ></PrimaryButton>
-        )}
-
-        {user && (
-          <PrimaryButton
-            onPress={() => auth.signOut()}
-            title="Signout"
-            style={{ alignSelf: "center", marginTop: 50, flex: 0 }}
           ></PrimaryButton>
         )}
       </View>
@@ -120,6 +131,7 @@ const styles = StyleSheet.create({
   savedKollegiumsList: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   savedKollegiumContainer: {
     width: "49%",
