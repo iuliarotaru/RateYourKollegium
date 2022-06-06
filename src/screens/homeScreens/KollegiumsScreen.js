@@ -20,6 +20,7 @@ import { Colors } from "../../styles/Theme";
 
 const KollegiumsScreen = ({ navigation }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
+  //filter functionality states
   const [kollegiumsFilters, setKollegiumsFilters] = useRecoilState(
     kollegiumsFiltersAtom
   );
@@ -28,7 +29,8 @@ const KollegiumsScreen = ({ navigation }) => {
 
   const [filteredKollegiums, setFilteredKollegiums] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
-
+  
+  
   useEffect(() => {
     const unsubscribe = getKollegiums(setKollegiums);
     return unsubscribe;

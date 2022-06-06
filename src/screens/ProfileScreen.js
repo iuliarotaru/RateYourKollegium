@@ -51,28 +51,32 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.profileTitle}>Username</Text>
-        <Text style={styles.profileText}>{user?.username}</Text>
+        {user && (
+          <>
+            <Text style={styles.profileTitle}>Username</Text>
+            <Text style={styles.profileText}>{user?.username}</Text>
 
-        <Text style={styles.profileTitle}>Email</Text>
-        <Text style={styles.profileText}>{user?.email}</Text>
+            <Text style={styles.profileTitle}>Email</Text>
+            <Text style={styles.profileText}>{user?.email}</Text>
 
-        <Text style={styles.profileTitle}>School</Text>
-        <Text style={styles.profileText}>{user?.school}</Text>
+            <Text style={styles.profileTitle}>School</Text>
+            <Text style={styles.profileText}>{user?.school}</Text>
 
-        <Text style={[styles.profileTitle, { marginBottom: 10 }]}>
-          Saved Kollegiums
-        </Text>
+            <Text style={[styles.profileTitle, { marginBottom: 10 }]}>
+              Saved Kollegiums
+            </Text>
 
-        <View style={styles.savedKollegiumsList}>
-          <FlatList
-            data={user?.savedKollegiums}
-            keyExtractor={(kollegium) => `${kollegium}-${Math.random()}`}
-            renderItem={renderKollegium}
-            numColumns={2}
-            columnWrapperStyle={{ justifyContent: "space-between" }}
-          />
-        </View>
+            <View style={styles.savedKollegiumsList}>
+              <FlatList
+                data={user?.savedKollegiums}
+                keyExtractor={(kollegium) => `${kollegium}-${Math.random()}`}
+                renderItem={renderKollegium}
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: "space-between" }}
+              />
+            </View>
+          </>
+        )}
 
         {!user && (
           <PrimaryButton

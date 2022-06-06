@@ -1,63 +1,66 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
-import { addCommentsToKollegium } from "../../functions/KollegiumsFunctions";
 import { useRecoilState } from "recoil";
-import { kollegiumsAtom } from "../../atoms/KollegiumsAtom";
-import { userAtom } from "../../atoms/UserAtom";
-import { Alert } from "react-native";
+import { articlesAtom } from "../../atoms/ArticlesAtom";
+import CustomBackgroundImage from "../../components/CustomBackgroundImage";
+import RenderHtml from "react-native-render-html";
 
 const ArticlesDetailsScreen = ({ navigation, route }) => {
-  const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
-  const [user, setUser] = useRecoilState(userAtom);
+  const [articles, setArticles] = useRecoilState(articlesAtom);
 
-  const [kollegium, setKollegium] = useState(null);
-  const [comment, setComment] = useState("");
+  const [article, setArticle] = useState(null);
 
-  const kollegiumId = route.params.kollegiumId;
+  const articleId = route.params.articleId;
 
   useEffect(() => {
-    const ourKollegium = kollegiums.find((data) => {
-      return data.id === kollegiumId;
+    const ourArticle = articles.find((data) => {
+      return data.id === articleId;
     });
-    setKollegium(ourKollegium);
-  }, [kollegiums]);
+    setArticle(ourArticle);
+  }, [articles]);
 
-  const handleComment = () => {
-    if (comment.length > 0) {
-      addCommentsToKollegium(comment, user.username, kollegium.id);
-    } else {
-      Alert.alert("Error", "add a comment");
-    }
-  };
-
+  const { width } = useWindowDimensions();
   return (
-    <SafeAreaView>
-      <Text>{kollegium?.name}</Text>
-      <Text>{kollegium?.address}</Text>
-      {user && (
-        <TextInput
-          onChangeText={setComment}
-          value={comment}
-          placeholder="Add a comment"
-        />
-      )}
-      {user && (
-        <Button onPress={() => handleComment()} title="Add a comment"></Button>
-      )}
-      {kollegium?.comments.map((comment, index) => {
-        return (
-          <View key={`comment-${index}`}>
-            <Text>{comment.username}</Text>
-            <Text>{comment.text}</Text>
-          </View>
-        );
-      })}
-    </SafeAreaView>
+    <ScrollView>
+      <CustomBackgroundImage
+        path={article?.image}
+        style={styles.image}
+        resizeMode="cover"
+      />
+      <View style={styles.container}>
+        <Text style={styles.title}>{article?.title}</Text>
+        <RenderHtml contentWidth={width} source={{ html: article?.text }} />
+      </View>
+    </ScrollView>
   );
 };
 
 export default ArticlesDetailsScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    height: 220,
+    justifyContent: "flex-end",
+  },
+
+  container: {
+    width: "100%",
+    maxWidth: "90%",
+    alignSelf: "center",
+    marginTop: 20,
+  },
+
+  title: {
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+});

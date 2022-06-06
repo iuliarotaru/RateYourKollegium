@@ -1,7 +1,3 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { Alert } from "react-native";
 import { auth, db, storage } from "../config/firebase";
 import {
