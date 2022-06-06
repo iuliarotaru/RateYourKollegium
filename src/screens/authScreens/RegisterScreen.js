@@ -42,7 +42,6 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-      <Text>register screen</Text>
       <TextInput
         onChangeText={setUsername}
         value={username}
@@ -82,7 +81,7 @@ const RegisterScreen = ({ navigation }) => {
         onPress={() => handleFileInput()}
         title={contractDetails ? "Remove Contract" : "Upload Contract"}
       ></Button>
-      <Text> {contractDetails} </Text>
+      <Text style={styles.contractDetails}> {contractDetails} </Text>
       <PrimaryButton onPress={() => handleRegister()} title="Register" />
     </KeyboardAwareScrollView>
   );
@@ -99,5 +98,8 @@ const styles = StyleSheet.create({
   },
   keyboardContainer: {
     flex: 1,
+  },
+  contractDetails: {
+    marginBottom: 15,
   },
 });

@@ -15,6 +15,8 @@ import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { TextInput } from "react-native";
 import { kollegiumsSelectedFiltersAtom } from "../../atoms/KollegiumsSelectedFiltersAtom";
 import PrimaryButton from "../../components/PrimaryButton";
+import SecondaryButton from "../../components/SecondaryButton";
+import { Colors } from "../../styles/Theme";
 
 const KollegiumsScreen = ({ navigation }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
@@ -117,13 +119,23 @@ const KollegiumsScreen = ({ navigation }) => {
     Keyboard.dismiss();
   };
 
+  const handleResetFilter = () => {
+    setKollegiumsFilters([]);
+    setKollegiumsSelectedFilters({});
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TouchableOpacity onPress={handleFilter}>
-        <FontAwesome name="filter" />
-        <Text>Filter</Text>
+      <TouchableOpacity
+        onPress={handleFilter}
+        style={styles.filterButtonContainer}
+      >
+        <FontAwesome name="filter" size={25} />
+        <Text style={styles.filterButtonText}>Filter</Text>
       </TouchableOpacity>
-      <Text>{filteredKollegiums.length} kollegiums found</Text>
+      <Text style={styles.resultsText}>
+        {filteredKollegiums.length} kollegiums found
+      </Text>
       <FlatList
         data={filteredKollegiums}
         keyExtractor={(kollegium) => `${kollegium.id}-${Math.random()}`}
@@ -136,11 +148,12 @@ const KollegiumsScreen = ({ navigation }) => {
           enablePanDownToClose={true}
         >
           <BottomSheetScrollView
-            style={styles.contentContainer}
+            style={styles.filtersContainer}
             keyboardShouldPersistTaps="handled"
           >
+            <Text style={styles.filterTitle}>Zipcode</Text>
             <TextInput
-              placeholder="zipcode"
+              placeholder="Zipcode"
               value={kollegiumsSelectedFilters.zipcode}
               onChangeText={(value) => {
                 setKollegiumsSelectedFilters({
@@ -150,8 +163,10 @@ const KollegiumsScreen = ({ navigation }) => {
               }}
               keyboardType="number-pad"
             />
+
+            <Text style={styles.filterTitle}>Minimum Price</Text>
             <TextInput
-              placeholder="priceMin"
+              placeholder="Minimum price"
               value={kollegiumsSelectedFilters.priceMin}
               onChangeText={(value) => {
                 setKollegiumsSelectedFilters({
@@ -161,8 +176,10 @@ const KollegiumsScreen = ({ navigation }) => {
               }}
               keyboardType="number-pad"
             />
+
+            <Text style={styles.filterTitle}>Maximum Price</Text>
             <TextInput
-              placeholder="priceMax"
+              placeholder="Maximum price"
               value={kollegiumsSelectedFilters.priceMax}
               onChangeText={(value) => {
                 setKollegiumsSelectedFilters({
@@ -173,83 +190,129 @@ const KollegiumsScreen = ({ navigation }) => {
               keyboardType="number-pad"
             ></TextInput>
 
-            <TouchableOpacity
-              onPress={() => {
-                setKollegiumsSelectedFilters({
-                  ...kollegiumsSelectedFilters,
-                  courtyard: !kollegiumsSelectedFilters.courtyard,
-                });
-              }}
-            >
-              <View
-                style={
-                  kollegiumsSelectedFilters.courtyard
-                    ? styles.facilitySelected
-                    : styles.facility
-                }
+            <Text style={styles.filterTitle}>Facilities</Text>
+            <View style={styles.facilitiesWrapper}>
+              <TouchableOpacity
+                onPress={() => {
+                  setKollegiumsSelectedFilters({
+                    ...kollegiumsSelectedFilters,
+                    courtyard: !kollegiumsSelectedFilters.courtyard,
+                  });
+                }}
+                style={styles.facilityContainer}
               >
-                <Text>Courtyard</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setKollegiumsSelectedFilters({
-                  ...kollegiumsSelectedFilters,
-                  laundry: !kollegiumsSelectedFilters.laundry,
-                });
-              }}
-            >
-              <View
-                style={
-                  kollegiumsSelectedFilters.laundry
-                    ? styles.facilitySelected
-                    : styles.facility
-                }
+                <View
+                  style={
+                    kollegiumsSelectedFilters.courtyard
+                      ? styles.facilitySelected
+                      : styles.facility
+                  }
+                >
+                  <Text
+                    style={
+                      kollegiumsSelectedFilters.courtyard
+                        ? styles.facilityTextSelected
+                        : styles.facilityText
+                    }
+                  >
+                    Courtyard
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setKollegiumsSelectedFilters({
+                    ...kollegiumsSelectedFilters,
+                    laundry: !kollegiumsSelectedFilters.laundry,
+                  });
+                }}
+                style={styles.facilityContainer}
               >
-                <Text>Laundry</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setKollegiumsSelectedFilters({
-                  ...kollegiumsSelectedFilters,
-                  dogsAllowed: !kollegiumsSelectedFilters.dogsAllowed,
-                });
-              }}
-            >
-              <View
-                style={
-                  kollegiumsSelectedFilters.dogsAllowed
-                    ? styles.facilitySelected
-                    : styles.facility
-                }
+                <View
+                  style={
+                    kollegiumsSelectedFilters.laundry
+                      ? styles.facilitySelected
+                      : styles.facility
+                  }
+                >
+                  <Text
+                    style={
+                      kollegiumsSelectedFilters.laundry
+                        ? styles.facilityTextSelected
+                        : styles.facilityText
+                    }
+                  >
+                    Laundry
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setKollegiumsSelectedFilters({
+                    ...kollegiumsSelectedFilters,
+                    dogsAllowed: !kollegiumsSelectedFilters.dogsAllowed,
+                  });
+                }}
+                style={styles.facilityContainer}
               >
-                <Text>Dogs allowed</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setKollegiumsSelectedFilters({
-                  ...kollegiumsSelectedFilters,
-                  catsAllowed: !kollegiumsSelectedFilters.catsAllowed,
-                });
-              }}
-            >
-              <View
-                style={
-                  kollegiumsSelectedFilters.catsAllowed
-                    ? styles.facilitySelected
-                    : styles.facility
-                }
+                <View
+                  style={
+                    kollegiumsSelectedFilters.dogsAllowed
+                      ? styles.facilitySelected
+                      : styles.facility
+                  }
+                >
+                  <Text
+                    style={
+                      kollegiumsSelectedFilters.dogsAllowed
+                        ? styles.facilityTextSelected
+                        : styles.facilityText
+                    }
+                  >
+                    Dogs allowed
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setKollegiumsSelectedFilters({
+                    ...kollegiumsSelectedFilters,
+                    catsAllowed: !kollegiumsSelectedFilters.catsAllowed,
+                  });
+                }}
+                style={styles.facilityContainer}
               >
-                <Text>Cats allowed</Text>
-              </View>
-            </TouchableOpacity>
-
-            <PrimaryButton
-              onPress={handleApplyFilter}
-              title="Apply"
-            ></PrimaryButton>
+                <View
+                  style={
+                    kollegiumsSelectedFilters.catsAllowed
+                      ? styles.facilitySelected
+                      : styles.facility
+                  }
+                >
+                  <Text
+                    style={
+                      kollegiumsSelectedFilters.catsAllowed
+                        ? styles.facilityTextSelected
+                        : styles.facilityText
+                    }
+                  >
+                    Cats allowed
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <PrimaryButton
+                onPress={handleApplyFilter}
+                title="Apply"
+                style={{ marginTop: 20, flex: 1, marginRight: 10 }}
+              ></PrimaryButton>
+              <SecondaryButton
+                onPress={handleResetFilter}
+                title="Reset"
+                style={{ marginTop: 20, flex: 1, marginRight: 10 }}
+              ></SecondaryButton>
+            </View>
           </BottomSheetScrollView>
         </BottomSheet>
       )}
@@ -260,17 +323,69 @@ const KollegiumsScreen = ({ navigation }) => {
 export default KollegiumsScreen;
 
 const styles = StyleSheet.create({
+  filterButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: "5%",
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+  },
+  filterButtonText: {
+    fontSize: 14,
+    marginLeft: 7.5,
+  },
+  resultsText: {
+    fontSize: 14,
+    marginLeft: "5%",
+    marginTop: 15,
+  },
+  filtersContainer: {
+    paddingVertical: 20,
+    maxWidth: "90%",
+    width: "100%",
+    alignSelf: "center",
+  },
+  filterTitle: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginTop: 20,
+  },
+  facilitiesWrapper: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  facilityContainer: {
+    display: "block",
+    marginRight: 10,
+    marginBottom: 10,
+  },
   facility: {
     borderWidth: "2",
     justifyContent: "center",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
+    borderRadius: 20,
+    borderColor: Colors.primary,
   },
   facilitySelected: {
     borderWidth: "2",
     justifyContent: "center",
     alignItems: "center",
-    padding: 5,
-    backgroundColor: "blue",
+    padding: 10,
+    borderRadius: 20,
+    borderColor: Colors.primary,
+    backgroundColor: Colors.primary,
+  },
+  facilityText: {
+    fontWeight: "500",
+  },
+  facilityTextSelected: {
+    color: Colors.light,
+    fontWeight: "500",
+  },
+  buttonsContainer: {
+    flexDirection: "row",
   },
 });

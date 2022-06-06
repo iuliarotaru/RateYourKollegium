@@ -7,7 +7,6 @@ import PrimaryButton from "../../components/PrimaryButton";
 const AuthScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Auth</Text>
       <PrimaryButton
         onPress={() => navigation.navigate("Register")}
         title="Register"

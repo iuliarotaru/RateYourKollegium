@@ -18,7 +18,6 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-      <Text>login screen</Text>
       <TextInput
         onChangeText={setEmail}
         value={email}
@@ -38,7 +37,7 @@ const LoginScreen = ({ navigation }) => {
         secureTextEntry={true}
       />
       <TouchableOpacity onPress={() => navigation.replace("ResetPassword")}>
-        <Text>Forgot password?</Text>
+        <Text style={styles.forgotPasswordText}>Forgot password?</Text>
       </TouchableOpacity>
       <PrimaryButton
         onPress={() => handleLogin()}
@@ -60,5 +59,8 @@ const styles = StyleSheet.create({
   },
   keyboardContainer: {
     flex: 1,
+  },
+  forgotPasswordText: {
+    marginTop: 10,
   },
 });

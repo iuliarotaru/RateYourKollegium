@@ -12,6 +12,7 @@ export const Colors = {
   red: "red",
   green: "green",
   pinkTransparent: "rgba(249, 239, 230, 1)",
+  light: "white",
 };
 
 export const TextHierarchy = {
@@ -32,12 +33,23 @@ export const TextHierarchy = {
     color: Colors.buttonText,
     textAlign: "center",
   },
+  buttonSecondary: {
+    color: Colors.primary,
+    textAlign: "center",
+  },
 };
 
 export const Buttons = {
   primary: {
-    color: Colors.buttonText,
     backgroundColor: Colors.primary,
+    padding: 10,
+    width: "100%",
+    maxWidth: "80%",
+  },
+  secondary: {
+    backgroundColor: Colors.light,
+    borderWidth: 2,
+    borderColor: Colors.primary,
     padding: 10,
     width: "100%",
     maxWidth: "80%",

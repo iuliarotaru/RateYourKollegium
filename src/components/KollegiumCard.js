@@ -78,8 +78,8 @@ const KollegiumCard = ({
                     }
                     color={
                       user?.savedKollegiums.includes(kollegium?.id)
-                        ? "red"
-                        : "black"
+                        ? Colors.primary
+                        : Colors.dark
                     }
                     size={20}
                   ></FontAwesome>

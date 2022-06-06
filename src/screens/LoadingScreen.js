@@ -13,7 +13,7 @@ const LoadingScreen = ({ navigation }) => {
   useEffect(() => {
     const getOnboardingStatus = () => {
       auth.onAuthStateChanged(async (user) => {
-        const onboardingStatus = await getData("onboarding");
+        const onboardingStatus = await getData("onboarding"); //get onboarding status
         if (user) {
           const userData = await getUser();
           setUser(userData);

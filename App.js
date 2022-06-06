@@ -52,7 +52,7 @@ export default function App() {
             <Stack.Screen
               name="Auth"
               component={AuthScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: true }}
             />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
