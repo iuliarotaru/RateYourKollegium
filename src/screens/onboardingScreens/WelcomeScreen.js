@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Buttons, Colors, Containers, TextHierarchy } from "../../styles/Theme";
-import { TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { Containers, TextHierarchy } from "../../styles/Theme";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>rateYourKollegium</Text>
+      <Image
+        source={require("../../images/logo.png")}
+        style={{ height: 200, maxWidth: "100%", marginBottom: 20 }}
+        resizeMode="contain"
+      />
       <Text style={styles.tagline}>Find a student housing in Denmark</Text>
       <PrimaryButton
         title={"Continue"}
         onPress={() => navigation.replace("Onboarding1")}
-        style={{ marginTop: 50 }}
       />
     </SafeAreaView>
   );
@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
   },
   tagline: {
     ...TextHierarchy.heading2,
+    marginBottom: 50,
   },
 });

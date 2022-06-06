@@ -9,12 +9,10 @@ import {
   Alert,
 } from "react-native";
 import React from "react";
-import { Colors, TextHierarchy } from "../styles/Theme";
 import { userAtom } from "../atoms/UserAtom";
 import { useRecoilState } from "recoil";
 import { useEffect, useState, useRef } from "react";
 import StarRating from "./StarRating";
-import CustomImage from "./CustomImage";
 import KollegiumComment from "./KollegiumComment";
 import PrimaryButton from "./PrimaryButton";
 import * as ImagePicker from "expo-image-picker";
@@ -92,12 +90,9 @@ const KollegiumComments = ({
       {user && (
         <View>
           <View style={styles.writeReview}>
-            {/* Reviews(nr of reviews) */}
             <View style={styles.writeReviewTopButton}>
               <Text>{`Reviews(${kollegium?.comments.length})`}</Text>
-              {/* Reviews(stars) */}
               <StarRating rating={kollegiumRating} setRating={null} />
-              {/* Button to add review - show hide the whole add a comment form */}
             </View>
 
             <PrimaryButton
@@ -106,8 +101,6 @@ const KollegiumComments = ({
               style={{ maxWidth: "100%" }}
             ></PrimaryButton>
           </View>
-
-          {/* write review section that needs to be toggled */}
           {writeReview && (
             <View style={styles.writeReview}>
               <Button

@@ -15,25 +15,25 @@ const ArticlesScreen = ({ navigation }) => {
   }, []);
 
   const renderArticle = ({ item }) => (
-    <ArticleCard
-      onPress={() =>
-        navigation.navigate("ArticlesDetails", {
-          articleId: item.id,
-        })
-      }
-      article={item}
-    />
+    <View style={styles.articleContainer}>
+      <ArticleCard
+        onPress={() =>
+          navigation.navigate("ArticlesDetails", {
+            articleId: item.id,
+          })
+        }
+        article={item}
+      />
+    </View>
   );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.articlesContainer}>
-        <FlatList
-          data={articles}
-          keyExtractor={(article) => `${article.id}-${Math.random()}`}
-          renderItem={renderArticle}
-        />
-      </View>
+      <FlatList
+        data={articles}
+        keyExtractor={(article) => `${article.id}-${Math.random()}`}
+        renderItem={renderArticle}
+      />
     </SafeAreaView>
   );
 };
@@ -41,9 +41,10 @@ const ArticlesScreen = ({ navigation }) => {
 export default ArticlesScreen;
 
 const styles = StyleSheet.create({
-  articlesContainer: {
+  articleContainer: {
     width: "90%",
     alignSelf: "center",
     marginTop: 25,
+    flex: 1,
   },
 });

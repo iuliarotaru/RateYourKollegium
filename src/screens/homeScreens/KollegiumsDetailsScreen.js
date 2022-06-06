@@ -1,18 +1,13 @@
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState, useRef } from "react";
-import { addCommentsToKollegium } from "../../functions/KollegiumsFunctions";
 import { useRecoilState } from "recoil";
 import { kollegiumsAtom } from "../../atoms/KollegiumsAtom";
 import { userAtom } from "../../atoms/UserAtom";
 import { ScrollView, Keyboard, Linking, TouchableOpacity } from "react-native";
-import StarRating from "../../components/StarRating";
 import KollegiumCard from "../../components/KollegiumCard";
 import KollegiumContent from "../../components/KollegiumContent";
 import KollegiumComments from "../../components/KollegiumComments";
-import { FontAwesome } from "@expo/vector-icons";
-import { Colors } from "../../styles/Theme";
 
 const KollegiumsDetailsScreen = ({ navigation, route }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
@@ -24,6 +19,7 @@ const KollegiumsDetailsScreen = ({ navigation, route }) => {
   const [commentsCoords, setCommentsCoords] = useState(null);
   const [scrollViewRef, setScrollViewRef] = useState();
 
+  
   const kollegiumId = route.params.kollegiumId;
 
   useEffect(() => {

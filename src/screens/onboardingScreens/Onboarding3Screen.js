@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React from "react";
-import { Containers } from "../../styles/Theme";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { Containers, TextHierarchy } from "../../styles/Theme";
 import { storeData } from "../../functions/LocalStorageFunctions";
 import PrimaryButton from "../../components/PrimaryButton";
 
@@ -13,7 +11,12 @@ const Onboarding3Screen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Onboarding3Screen</Text>
+      <Image
+        source={require("../../images/logo.png")}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <Text style={styles.tagline}>Onboarding3Screen</Text>
       <PrimaryButton
         onPress={() => handleOnPress()}
         title="Next"
@@ -27,5 +30,14 @@ export default Onboarding3Screen;
 const styles = StyleSheet.create({
   container: {
     ...Containers.main,
+  },
+  tagline: {
+    ...TextHierarchy.heading2,
+    marginBottom: 50,
+  },
+  image: {
+    height: 200,
+    maxWidth: "100%",
+    marginBottom: 20,
   },
 });

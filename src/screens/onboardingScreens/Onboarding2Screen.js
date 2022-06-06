@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React from "react";
-import { Containers } from "../../styles/Theme";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { Containers, TextHierarchy } from "../../styles/Theme";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const Onboarding2Screen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Onboarding2Screen</Text>
+      <Image
+        source={require("../../images/logo.png")}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <Text style={styles.tagline}>Onboarding2Screen</Text>
       <PrimaryButton
         onPress={() => navigation.replace("Onboarding3")}
         title="Next"
@@ -21,5 +24,14 @@ export default Onboarding2Screen;
 const styles = StyleSheet.create({
   container: {
     ...Containers.main,
+  },
+  tagline: {
+    ...TextHierarchy.heading2,
+    marginBottom: 50,
+  },
+  image: {
+    height: 200,
+    maxWidth: "100%",
+    marginBottom: 20,
   },
 });

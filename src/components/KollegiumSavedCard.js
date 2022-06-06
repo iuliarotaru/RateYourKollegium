@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../styles/Theme";
 import CustomBackgroundImage from "./CustomBackgroundImage";
 
+//example stateless component
 const KollegiumSavedCard = ({ kollegium }) => {
   return (
     <View style={styles.container}>

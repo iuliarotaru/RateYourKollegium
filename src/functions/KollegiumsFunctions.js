@@ -35,40 +35,52 @@ export const addCommentsToKollegium = async (
   username,
   kollegiumId
 ) => {
-  //Reference to the current kollegium
-  const kollegiumRef = doc(db, "kollegiums", kollegiumId);
+  try {
+    //Reference to the current kollegium
+    const kollegiumRef = doc(db, "kollegiums", kollegiumId);
 
-  let fileSnapshot = null;
-  if (image) {
-    const storageRef = ref(storage, `comments/${uuidv4()}`);
-    fileSnapshot = await uploadBytes(storageRef, image);
+    let fileSnapshot = null;
+    if (image) {
+      const storageRef = ref(storage, `comments/${uuidv4()}`);
+      fileSnapshot = await uploadBytes(storageRef, image);
+    }
+
+    await updateDoc(kollegiumRef, {
+      comments: arrayUnion({
+        createdAt: new Date(),
+        username,
+        text: comment,
+        image: image ? fileSnapshot.metadata.fullPath : "",
+        rating,
+      }),
+    });
+  } catch (error) {
+    Alert.alert("Error", getErrorMessage(error.code));
   }
-
-  await updateDoc(kollegiumRef, {
-    comments: arrayUnion({
-      createdAt: new Date(),
-      username,
-      text: comment,
-      image: image ? fileSnapshot.metadata.fullPath : "",
-      rating,
-    }),
-  });
 };
 
 export const saveKollegium = async (userId, kollegiumId) => {
-  const userRef = doc(db, "usersData", userId);
+  try {
+    const userRef = doc(db, "usersData", userId);
 
-  await updateDoc(userRef, {
-    savedKollegiums: arrayUnion(kollegiumId),
-  });
+    await updateDoc(userRef, {
+      savedKollegiums: arrayUnion(kollegiumId),
+    });
+  } catch (error) {
+    Alert.alert("Error", getErrorMessage(error.code));
+  }
 };
 
 export const removeSavedKollegium = async (userId, kollegiumId) => {
-  const userRef = doc(db, "usersData", userId);
+  try {
+    const userRef = doc(db, "usersData", userId);
 
-  await updateDoc(userRef, {
-    savedKollegiums: arrayRemove(kollegiumId),
-  });
+    await updateDoc(userRef, {
+      savedKollegiums: arrayRemove(kollegiumId),
+    });
+  } catch (error) {
+    Alert.alert("Error", getErrorMessage(error.code));
+  }
 };
 
 export const getImageUrl = async (path) => {

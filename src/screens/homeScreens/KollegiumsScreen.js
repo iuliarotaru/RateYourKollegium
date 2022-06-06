@@ -21,16 +21,21 @@ import { Colors } from "../../styles/Theme";
 const KollegiumsScreen = ({ navigation }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
   //filter functionality states
+  
+  //state that contains the filtering logic for each chosen filter
   const [kollegiumsFilters, setKollegiumsFilters] = useRecoilState(
     kollegiumsFiltersAtom
   );
+
+  //state for the ones that are selected inside the bottom sheet
   const [kollegiumsSelectedFilters, setKollegiumsSelectedFilters] =
     useRecoilState(kollegiumsSelectedFiltersAtom);
 
+  //state for the ones that are shown in the kollegium list feed
   const [filteredKollegiums, setFilteredKollegiums] = useState([]);
+
   const [showFilters, setShowFilters] = useState(false);
-  
-  
+
   useEffect(() => {
     const unsubscribe = getKollegiums(setKollegiums);
     return unsubscribe;
@@ -70,7 +75,7 @@ const KollegiumsScreen = ({ navigation }) => {
 
   const handleApplyFilter = () => {
     const filters = [];
-    //decapsulation
+    //decapsulation from the kollegiumSelectedFilters state
     const {
       zipcode,
       priceMin,

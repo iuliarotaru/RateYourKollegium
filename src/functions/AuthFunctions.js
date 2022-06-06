@@ -7,6 +7,7 @@ import { auth, db, storage } from "../config/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { getErrorMessage } from "./HelperFunctions";
 
 export const register = async (username, email, password, school, contract) => {
   try {
@@ -22,7 +23,7 @@ export const register = async (username, email, password, school, contract) => {
       role: "user",
     });
   } catch (error) {
-    Alert.alert("Error", error.message);
+    Alert.alert("Error", getErrorMessage(error.code));
   }
 };
 
@@ -30,7 +31,7 @@ export const login = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    Alert.alert("Error", error.message);
+    Alert.alert("Error", getErrorMessage(error.code));
   }
 };
 
@@ -45,11 +46,11 @@ export const getUser = async () => {
       user.school = data.school;
       user.contract = data.contract;
       user.role = data.role;
-      user.savedKollegiums = data.savedKollegiums
+      user.savedKollegiums = data.savedKollegiums;
     }
     return user;
   } catch (error) {
-    Alert.alert("Error", error.message);
+    Alert.alert("Error", getErrorMessage(error.code));
   }
 };
 
@@ -58,6 +59,6 @@ export const resetPassword = async (email) => {
     await sendPasswordResetEmail(auth, email);
     return true;
   } catch (error) {
-    Alert.alert("Error", error.message);
+    Alert.alert("Error", getErrorMessage(error.code));
   }
 };
