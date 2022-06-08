@@ -15,6 +15,7 @@ import { kollegiumsFiltersAtom } from "../../atoms/KollegiumsFiltersAtom";
 import KollegiumCard from "../../components/KollegiumCard";
 import { FontAwesome } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet";
+import { ScrollView } from "react-native-gesture-handler";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { kollegiumsSelectedFiltersAtom } from "../../atoms/KollegiumsSelectedFiltersAtom";
 import PrimaryButton from "../../components/PrimaryButton";
@@ -158,7 +159,7 @@ const KollegiumsScreen = ({ navigation }) => {
           snapPoints={snapPoints}
           enablePanDownToClose={true}
         >
-          <BottomSheetScrollView
+          <ScrollView
             style={styles.filtersContainer}
             keyboardShouldPersistTaps="handled"
           >
@@ -200,8 +201,8 @@ const KollegiumsScreen = ({ navigation }) => {
               }}
               keyboardType="number-pad"
             ></TextInput>
-
             <CustomText style={styles.filterTitle}>Facilities</CustomText>
+
             <View style={styles.facilitiesWrapper}>
               <TouchableOpacity
                 onPress={() => {
@@ -312,6 +313,7 @@ const KollegiumsScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={styles.buttonsContainer}>
               <PrimaryButton
                 onPress={handleApplyFilter}
@@ -324,7 +326,7 @@ const KollegiumsScreen = ({ navigation }) => {
                 style={{ marginTop: 20, flex: 1, marginRight: 10 }}
               ></SecondaryButton>
             </View>
-          </BottomSheetScrollView>
+          </ScrollView>
         </BottomSheet>
       )}
     </SafeAreaView>
@@ -368,12 +370,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   facilityContainer: {
-    display: "block",
     marginRight: 10,
     marginBottom: 10,
   },
   facility: {
-    borderWidth: "2",
+    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
@@ -381,7 +382,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.secondary,
   },
   facilitySelected: {
-    borderWidth: "2",
+    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,

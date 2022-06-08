@@ -1,9 +1,10 @@
-import { StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import { register } from "../../functions/AuthFunctions";
 import { getDocumentAsync } from "expo-document-picker";
 import { Inputs, Containers } from "../../styles/Theme";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import PrimaryButton from "../../components/PrimaryButton";
+import SecondaryButton from "../../components/SecondaryButton";
 import CustomText from "../../components/CustomText";
 import { useState } from "react";
 
@@ -14,11 +15,14 @@ const RegisterScreen = ({ navigation }) => {
   const [school, setSchool] = useState("");
   const [contract, setContract] = useState(null);
   const [contractDetails, setContractDetails] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleRegister = () => {
-    //TODO: Validate fields
-
-    register(username, email, password, school, contract);
+  const handleRegister = async () => {
+    if (!isLoading) {
+      setIsLoading(true);
+      await register(username, email, password, school, contract);
+      setIsLoading(false);
+    }
   };
 
   const handleFileInput = async () => {
@@ -73,14 +77,11 @@ const RegisterScreen = ({ navigation }) => {
         style={styles.textInput}
         placeholderTextColor="black"
       />
-      <TouchableOpacity
+      <SecondaryButton
         onPress={() => handleFileInput()}
         title={contractDetails ? "Remove Contract" : "Upload Contract"}
-      ></TouchableOpacity>
-      <CustomText style={styles.contractDetails}>
-        {" "}
-        {contractDetails}{" "}
-      </CustomText>
+      />
+      <CustomText style={styles.contractDetails}>{contractDetails}</CustomText>
       <PrimaryButton onPress={() => handleRegister()} title="Register" />
     </KeyboardAwareScrollView>
   );

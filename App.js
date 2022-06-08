@@ -15,7 +15,7 @@ import "./src/config/firebase";
 import { RecoilRoot } from "recoil";
 import ResetPasswordScreen from "./src/screens/authScreens/ResetPasswordScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import * as SplashScreen from "expo-splash-screen";
+import AppLoading from "expo-app-loading";
 import {
   useFonts,
   Mulish_400Regular,
@@ -32,10 +32,8 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    SplashScreen.preventAutoHideAsync().catch(console.warn);
+    return <AppLoading />;
   }
-
-  SplashScreen.hideAsync();
 
   return (
     <RecoilRoot>

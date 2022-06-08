@@ -8,6 +8,8 @@ export const Colors = {
   transparent: "rgba(255,255,255,0.6)",
   lightPink: "rgba(249, 239, 230, 1)",
   light: "#ffffff",
+  green: "green",
+  red: "red",
 };
 
 export const TextHierarchy = {

@@ -21,8 +21,10 @@ export const register = async (username, email, password, school, contract) => {
       school,
       contract: fileSnapshot.metadata.fullPath,
       role: "user",
+      savedKollegiums: [],
     });
   } catch (error) {
+    console.log(error.message);
     Alert.alert("Error", getErrorMessage(error.code));
   }
 };
@@ -46,7 +48,7 @@ export const getUser = async () => {
       user.school = data.school;
       user.contract = data.contract;
       user.role = data.role;
-      user.savedKollegiums = data.savedKollegiums;
+      user.savedKollegiums = data.savedKollegiums || [];
     }
     return user;
   } catch (error) {

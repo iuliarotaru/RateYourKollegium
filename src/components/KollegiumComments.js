@@ -74,11 +74,7 @@ const KollegiumComments = ({
   };
 
   const toggleWriteReviewVisibility = () => {
-    if (!writeReview) {
-      setWriteReview(true);
-    } else {
-      setWriteReview(false);
-    }
+    setWriteReview(!writeReview);
   };
 
   return (
@@ -134,7 +130,7 @@ const KollegiumComments = ({
                 placeholder="Please write a descriptive review based on your experience"
                 style={styles.commentInput}
                 multiline
-                numberOfLines={20}
+                numberOfLines={5}
               />
               <CustomText style={[styles.sectionTitle]}>
                 Rate your overall experience
@@ -146,9 +142,9 @@ const KollegiumComments = ({
                   onPress={() => handleComment()}
                   title="Post"
                   style={{
-                    width: "fit-content",
                     paddingHorizontal: 40,
                     borderRadius: 10,
+                    width: "auto",
                   }}
                 />
               </View>

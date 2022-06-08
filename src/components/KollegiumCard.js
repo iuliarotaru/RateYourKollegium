@@ -72,11 +72,13 @@ const KollegiumCard = ({
                 >
                   <FontAwesome
                     name={
+                      user.saveKollegiums &&
                       user?.savedKollegiums.includes(kollegium?.id)
                         ? "bookmark"
                         : "bookmark-o"
                     }
                     color={
+                      user.saveKollegiums &&
                       user?.savedKollegiums.includes(kollegium?.id)
                         ? Colors.primary
                         : Colors.dark
