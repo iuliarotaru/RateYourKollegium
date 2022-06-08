@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   ScrollView,
   View,
   useWindowDimensions,
@@ -11,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { articlesAtom } from "../../atoms/ArticlesAtom";
 import CustomBackgroundImage from "../../components/CustomBackgroundImage";
 import RenderHtml from "react-native-render-html";
+import CustomText from "../../components/CustomText";
 
 const ArticlesDetailsScreen = ({ navigation, route }) => {
   const [articles, setArticles] = useRecoilState(articlesAtom);
@@ -35,8 +35,10 @@ const ArticlesDetailsScreen = ({ navigation, route }) => {
         resizeMode="cover"
       />
       <View style={styles.container}>
-        <Text style={styles.title}>{article?.title}</Text>
-        <RenderHtml contentWidth={width} source={{ html: article?.text }} />
+        <CustomText style={styles.title}>{article?.title}</CustomText>
+        {article?.text && (
+          <RenderHtml contentWidth={width} source={{ html: article?.text }} />
+        )}
       </View>
     </ScrollView>
   );

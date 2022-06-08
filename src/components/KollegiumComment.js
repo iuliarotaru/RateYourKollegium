@@ -1,21 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, View } from "react-native";
 import { Colors } from "../styles/Theme";
 import CustomImage from "./CustomImage";
 import { getFormattedDate } from "../functions/HelperFunctions";
+import CustomText from "./CustomText";
 
 const KollegiumComment = ({ comment }) => {
   return (
     <View style={styles.commentContainer}>
       <View style={styles.commentHeader}>
-        <Text style={styles.commentUsername}>{comment.username}</Text>
-        <Text style={styles.commentDate}>
-          {comment.createdAt ? getFormattedDate(comment.createdAt.toDate()) : ""}
-        </Text>
+        <CustomText style={styles.commentUsername}>
+          {comment.username}
+        </CustomText>
+        <CustomText style={styles.commentDate}>
+          {comment.createdAt
+            ? getFormattedDate(comment.createdAt.toDate())
+            : ""}
+        </CustomText>
       </View>
-      <Text style={styles.commentText}>{comment.text}</Text>
+      <CustomText style={styles.commentText}>{comment.text}</CustomText>
 
-      {comment.image.length > 0 && (
+      {comment.image?.length > 0 && (
         <View style={styles.imageContainer}>
           <CustomImage
             path={comment.image}

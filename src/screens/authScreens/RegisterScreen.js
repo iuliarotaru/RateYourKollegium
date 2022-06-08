@@ -1,15 +1,11 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { register } from "../../functions/AuthFunctions";
-import { Alert } from "react-native";
 import { getDocumentAsync } from "expo-document-picker";
 import { Inputs, Containers } from "../../styles/Theme";
-import { KeyboardAvoidingView, Platform } from "react-native";
-import { ScrollView } from "react-native-web";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import PrimaryButton from "../../components/PrimaryButton";
+import CustomText from "../../components/CustomText";
+import { useState } from "react";
 
 const RegisterScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -45,7 +41,7 @@ const RegisterScreen = ({ navigation }) => {
       <TextInput
         onChangeText={setUsername}
         value={username}
-        placeholder="username"
+        placeholder="Username"
         style={styles.textInput}
         autoComplete="username"
         textContentType="username"
@@ -54,7 +50,7 @@ const RegisterScreen = ({ navigation }) => {
       <TextInput
         onChangeText={setEmail}
         value={email}
-        placeholder="email"
+        placeholder="Email"
         style={styles.textInput}
         autoComplete="email"
         textContentType="emailAddress"
@@ -64,7 +60,7 @@ const RegisterScreen = ({ navigation }) => {
       <TextInput
         onChangeText={setPassword}
         value={password}
-        placeholder="password"
+        placeholder="Password"
         style={styles.textInput}
         placeholderTextColor="black"
         textContentType="newPassword"
@@ -73,15 +69,18 @@ const RegisterScreen = ({ navigation }) => {
       <TextInput
         onChangeText={setSchool}
         value={school}
-        placeholder="school"
+        placeholder="School"
         style={styles.textInput}
         placeholderTextColor="black"
       />
-      <Button
+      <TouchableOpacity
         onPress={() => handleFileInput()}
         title={contractDetails ? "Remove Contract" : "Upload Contract"}
-      ></Button>
-      <Text style={styles.contractDetails}> {contractDetails} </Text>
+      ></TouchableOpacity>
+      <CustomText style={styles.contractDetails}>
+        {" "}
+        {contractDetails}{" "}
+      </CustomText>
       <PrimaryButton onPress={() => handleRegister()} title="Register" />
     </KeyboardAwareScrollView>
   );

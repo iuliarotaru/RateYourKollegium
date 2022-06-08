@@ -1,27 +1,31 @@
-import { StyleSheet, Text, View, Keyboard } from "react-native";
-import { useState, useCallback, useMemo, useRef } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useEffect } from "react";
+import {
+  StyleSheet,
+  View,
+  Keyboard,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { getKollegiums } from "../../functions/KollegiumsFunctions";
 import { useRecoilState } from "recoil";
 import { kollegiumsAtom } from "../../atoms/KollegiumsAtom";
 import { kollegiumsFiltersAtom } from "../../atoms/KollegiumsFiltersAtom";
 import KollegiumCard from "../../components/KollegiumCard";
-import { FlatList } from "react-native";
-import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { TextInput } from "react-native";
 import { kollegiumsSelectedFiltersAtom } from "../../atoms/KollegiumsSelectedFiltersAtom";
 import PrimaryButton from "../../components/PrimaryButton";
 import SecondaryButton from "../../components/SecondaryButton";
 import { Colors } from "../../styles/Theme";
+import CustomText from "../../components/CustomText";
 
 const KollegiumsScreen = ({ navigation }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
   //filter functionality states
-  
+
   //state that contains the filtering logic for each chosen filter
   const [kollegiumsFilters, setKollegiumsFilters] = useRecoilState(
     kollegiumsFiltersAtom
@@ -138,11 +142,11 @@ const KollegiumsScreen = ({ navigation }) => {
         style={styles.filterButtonContainer}
       >
         <FontAwesome name="filter" size={25} />
-        <Text style={styles.filterButtonText}>Filter</Text>
+        <CustomText style={styles.filterButtonText}>Filter</CustomText>
       </TouchableOpacity>
-      <Text style={styles.resultsText}>
+      <CustomText style={styles.resultsText}>
         {filteredKollegiums.length} kollegiums found
-      </Text>
+      </CustomText>
       <FlatList
         data={filteredKollegiums}
         keyExtractor={(kollegium) => `${kollegium.id}-${Math.random()}`}
@@ -158,7 +162,7 @@ const KollegiumsScreen = ({ navigation }) => {
             style={styles.filtersContainer}
             keyboardShouldPersistTaps="handled"
           >
-            <Text style={styles.filterTitle}>Zipcode</Text>
+            <CustomText style={styles.filterTitle}>Zipcode</CustomText>
             <TextInput
               placeholder="Zipcode"
               value={kollegiumsSelectedFilters.zipcode}
@@ -171,7 +175,7 @@ const KollegiumsScreen = ({ navigation }) => {
               keyboardType="number-pad"
             />
 
-            <Text style={styles.filterTitle}>Minimum Price</Text>
+            <CustomText style={styles.filterTitle}>Minimum Price</CustomText>
             <TextInput
               placeholder="Minimum price"
               value={kollegiumsSelectedFilters.priceMin}
@@ -184,7 +188,7 @@ const KollegiumsScreen = ({ navigation }) => {
               keyboardType="number-pad"
             />
 
-            <Text style={styles.filterTitle}>Maximum Price</Text>
+            <CustomText style={styles.filterTitle}>Maximum Price</CustomText>
             <TextInput
               placeholder="Maximum price"
               value={kollegiumsSelectedFilters.priceMax}
@@ -197,7 +201,7 @@ const KollegiumsScreen = ({ navigation }) => {
               keyboardType="number-pad"
             ></TextInput>
 
-            <Text style={styles.filterTitle}>Facilities</Text>
+            <CustomText style={styles.filterTitle}>Facilities</CustomText>
             <View style={styles.facilitiesWrapper}>
               <TouchableOpacity
                 onPress={() => {
@@ -215,7 +219,7 @@ const KollegiumsScreen = ({ navigation }) => {
                       : styles.facility
                   }
                 >
-                  <Text
+                  <CustomText
                     style={
                       kollegiumsSelectedFilters.courtyard
                         ? styles.facilityTextSelected
@@ -223,7 +227,7 @@ const KollegiumsScreen = ({ navigation }) => {
                     }
                   >
                     Courtyard
-                  </Text>
+                  </CustomText>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -242,7 +246,7 @@ const KollegiumsScreen = ({ navigation }) => {
                       : styles.facility
                   }
                 >
-                  <Text
+                  <CustomText
                     style={
                       kollegiumsSelectedFilters.laundry
                         ? styles.facilityTextSelected
@@ -250,7 +254,7 @@ const KollegiumsScreen = ({ navigation }) => {
                     }
                   >
                     Laundry
-                  </Text>
+                  </CustomText>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -269,7 +273,7 @@ const KollegiumsScreen = ({ navigation }) => {
                       : styles.facility
                   }
                 >
-                  <Text
+                  <CustomText
                     style={
                       kollegiumsSelectedFilters.dogsAllowed
                         ? styles.facilityTextSelected
@@ -277,7 +281,7 @@ const KollegiumsScreen = ({ navigation }) => {
                     }
                   >
                     Dogs allowed
-                  </Text>
+                  </CustomText>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -296,7 +300,7 @@ const KollegiumsScreen = ({ navigation }) => {
                       : styles.facility
                   }
                 >
-                  <Text
+                  <CustomText
                     style={
                       kollegiumsSelectedFilters.catsAllowed
                         ? styles.facilityTextSelected
@@ -304,7 +308,7 @@ const KollegiumsScreen = ({ navigation }) => {
                     }
                   >
                     Cats allowed
-                  </Text>
+                  </CustomText>
                 </View>
               </TouchableOpacity>
             </View>
@@ -374,7 +378,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 20,
-    borderColor: Colors.primary,
+    borderColor: Colors.secondary,
   },
   facilitySelected: {
     borderWidth: "2",
@@ -382,8 +386,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 20,
-    borderColor: Colors.primary,
-    backgroundColor: Colors.primary,
+    borderColor: Colors.secondary,
+    backgroundColor: Colors.secondary,
   },
   facilityText: {
     fontWeight: "500",

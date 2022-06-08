@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, FlatList } from "react-native";
 import { useRecoilState } from "recoil";
 import { articlesAtom } from "../../atoms/ArticlesAtom";
 import ArticleCard from "../../components/ArticleCard";
-import { FlatList } from "react-native";
 import { getArticles } from "../../functions/ArticlesFunctions";
 import { useEffect } from "react";
 

@@ -1,7 +1,8 @@
-import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Image, SafeAreaView } from "react-native";
 import { Containers, TextHierarchy } from "../../styles/Theme";
 import { storeData } from "../../functions/LocalStorageFunctions";
 import PrimaryButton from "../../components/PrimaryButton";
+import CustomText from "../../components/CustomText";
 
 const Onboarding3Screen = ({ navigation }) => {
   const handleOnPress = () => {
@@ -12,11 +13,13 @@ const Onboarding3Screen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require("../../images/logo.png")}
+        source={require("../../images/onboarding3.png")}
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={styles.tagline}>Onboarding3Screen</Text>
+      <CustomText style={styles.tagline}>
+        Leave a detailed review to help other students.
+      </CustomText>
       <PrimaryButton
         onPress={() => handleOnPress()}
         title="Next"

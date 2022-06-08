@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, View, Linking, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Colors } from "../styles/Theme";
-import { ScrollView, Keyboard, Linking, TouchableOpacity } from "react-native";
+import CustomText from "./CustomText";
 
 const KollegiumContent = ({ kollegium }) => {
   const handleReadMoreLink = (url) => {
@@ -13,19 +12,21 @@ const KollegiumContent = ({ kollegium }) => {
   return (
     <View style={styles.detailsContainer}>
       <View>
-        <Text style={styles.detailsTitle}>Description</Text>
-        <Text style={styles.descriptionText}>{kollegium?.description}</Text>
+        <CustomText style={styles.detailsTitle}>Description</CustomText>
+        <CustomText style={styles.descriptionText}>
+          {kollegium?.description}
+        </CustomText>
       </View>
 
       <View>
-        <Text style={styles.detailsTitle}>Facilities</Text>
+        <CustomText style={styles.detailsTitle}>Facilities</CustomText>
         <View style={styles.facilityRow}>
           <FontAwesome
             name={kollegium?.facilities.courtyard ? "check-circle" : "close"}
             color={kollegium?.facilities.courtyard ? Colors.green : Colors.red}
             size={17.5}
           />
-          <Text style={styles.facilityText}>Courtyard</Text>
+          <CustomText style={styles.facilityText}>Courtyard</CustomText>
         </View>
         <View style={styles.facilityRow}>
           <FontAwesome
@@ -33,7 +34,7 @@ const KollegiumContent = ({ kollegium }) => {
             color={kollegium?.facilities.laundry ? Colors.green : Colors.red}
             size={17.5}
           />
-          <Text style={styles.facilityText}>Laundry</Text>
+          <CustomText style={styles.facilityText}>Laundry</CustomText>
         </View>
         <View style={styles.facilityRow}>
           <FontAwesome
@@ -43,7 +44,7 @@ const KollegiumContent = ({ kollegium }) => {
             }
             size={17.5}
           />
-          <Text style={styles.facilityText}>Dogs Allowed</Text>
+          <CustomText style={styles.facilityText}>Dogs Allowed</CustomText>
         </View>
         <View style={styles.facilityRow}>
           <FontAwesome
@@ -53,7 +54,7 @@ const KollegiumContent = ({ kollegium }) => {
             }
             size={17.5}
           />
-          <Text style={styles.facilityText}>Cats Allowed</Text>
+          <CustomText style={styles.facilityText}>Cats Allowed</CustomText>
         </View>
       </View>
 
@@ -62,7 +63,7 @@ const KollegiumContent = ({ kollegium }) => {
           handleReadMoreLink(kollegium?.readMoreUrl);
         }}
       >
-        <Text style={styles.link}>Read more and apply</Text>
+        <CustomText style={styles.link}>Read more and apply</CustomText>
       </TouchableOpacity>
     </View>
   );

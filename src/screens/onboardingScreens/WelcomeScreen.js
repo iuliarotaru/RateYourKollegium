@@ -1,6 +1,7 @@
-import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Image, SafeAreaView } from "react-native";
 import { Containers, TextHierarchy } from "../../styles/Theme";
 import PrimaryButton from "../../components/PrimaryButton";
+import CustomText from "../../components/CustomText";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
@@ -10,7 +11,9 @@ const WelcomeScreen = ({ navigation }) => {
         style={{ height: 200, maxWidth: "100%", marginBottom: 20 }}
         resizeMode="contain"
       />
-      <Text style={styles.tagline}>Find a student housing in Denmark</Text>
+      <CustomText style={styles.tagline}>
+        Find a student housing in Denmark
+      </CustomText>
       <PrimaryButton
         title={"Continue"}
         onPress={() => navigation.replace("Onboarding1")}

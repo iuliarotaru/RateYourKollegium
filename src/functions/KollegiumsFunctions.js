@@ -1,9 +1,7 @@
 import { Alert } from "react-native";
-import { auth, db, storage } from "../config/firebase";
+import { db, storage } from "../config/firebase";
 import {
   doc,
-  setDoc,
-  getDoc,
   onSnapshot,
   collection,
   updateDoc,
@@ -84,5 +82,7 @@ export const removeSavedKollegium = async (userId, kollegiumId) => {
 };
 
 export const getImageUrl = async (path) => {
-  return await getDownloadURL(ref(storage, path));
+  try {
+    return await getDownloadURL(ref(storage, path));
+  } catch (error) {}
 };

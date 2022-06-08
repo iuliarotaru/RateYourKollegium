@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Colors } from "../styles/Theme";
 import CustomBackgroundImage from "./CustomBackgroundImage";
+import CustomText from "./CustomText";
 
 const ArticleCard = ({ article, onPress }) => {
   return (
@@ -11,7 +12,7 @@ const ArticleCard = ({ article, onPress }) => {
           style={styles.image}
           resizeMode="cover"
         >
-          <Text style={styles.articleName}>{article?.title}</Text>
+          <CustomText style={styles.articleName}>{article?.title}</CustomText>
         </CustomBackgroundImage>
       </TouchableOpacity>
     </View>

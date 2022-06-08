@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./src/screens/onboardingScreens/WelcomeScreen";
 import Onboarding1Screen from "./src/screens/onboardingScreens/Onboarding1Screen";
@@ -15,10 +15,28 @@ import "./src/config/firebase";
 import { RecoilRoot } from "recoil";
 import ResetPasswordScreen from "./src/screens/authScreens/ResetPasswordScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import * as SplashScreen from "expo-splash-screen";
+import {
+  useFonts,
+  Mulish_400Regular,
+  Mulish_700Bold,
+} from "@expo-google-fonts/mulish";
+import { Colors } from "./src/styles/Theme";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Mulish_400Regular,
+    Mulish_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    SplashScreen.preventAutoHideAsync().catch(console.warn);
+  }
+
+  SplashScreen.hideAsync();
+
   return (
     <RecoilRoot>
       <GestureHandlerRootView style={{ flex: 1 }}>
@@ -27,43 +45,52 @@ export default function App() {
             <Stack.Screen
               name="Loading"
               component={LoadingScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Welcome"
               component={WelcomeScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Onboarding1"
               component={Onboarding1Screen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Onboarding2"
               component={Onboarding2Screen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Onboarding3"
               component={Onboarding3Screen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Auth"
               component={AuthScreen}
               options={{ headerShown: true }}
             />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{ headerTintColor: Colors.dark }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{ headerTintColor: Colors.dark }}
+            />
             <Stack.Screen
               name="ResetPassword"
               component={ResetPasswordScreen}
+              options={{ headerTintColor: Colors.dark }}
             />
             <Stack.Screen
               name="Main"
               component={MainScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, headerTintColor: Colors.dark }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,10 +1,6 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { View, ActivityIndicator, ImageBackground } from "react-native";
+import { useState, useEffect } from "react";
 import { getImageUrl } from "../functions/KollegiumsFunctions";
-import { ActivityIndicator } from "react-native";
-import { ImageBackground } from "react-native";
 
 const CustomBackgroundImage = ({ path, children, style }) => {
   const [image, setImage] = useState("");
@@ -28,7 +24,7 @@ const CustomBackgroundImage = ({ path, children, style }) => {
 
   return (
     <View>
-      {image.length > 0 && (
+      {image?.length > 0 && (
         <ImageBackground source={{ uri: image }} style={style}>
           {children}
         </ImageBackground>
@@ -39,5 +35,3 @@ const CustomBackgroundImage = ({ path, children, style }) => {
 };
 
 export default CustomBackgroundImage;
-
-const styles = StyleSheet.create({});

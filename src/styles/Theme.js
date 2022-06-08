@@ -1,18 +1,13 @@
 export const Colors = {
   primary: "#EF8872",
-  secondary: "pink",
+  secondary: "#3C8987",
   background: "#F9F9FA",
-  text: "black",
-  heading: "black",
-  buttonText: "white",
-  input: "lightgray",
-  dark: "black",
+  text: "#1B1B1B",
+  dark: "#1B1B1B",
   gray: "lightgray",
   transparent: "rgba(255,255,255,0.6)",
-  red: "red",
-  green: "green",
-  pinkTransparent: "rgba(249, 239, 230, 1)",
-  light: "white",
+  lightPink: "rgba(249, 239, 230, 1)",
+  light: "#ffffff",
 };
 
 export const TextHierarchy = {
@@ -22,15 +17,15 @@ export const TextHierarchy = {
   },
   heading1: {
     fontSize: 35,
-    color: Colors.heading,
+    color: Colors.text,
   },
   heading2: {
     fontSize: 20,
-    color: Colors.heading,
+    color: Colors.text,
     textAlign: "center",
   },
   button: {
-    color: Colors.buttonText,
+    color: Colors.light,
     textAlign: "center",
   },
   buttonSecondary: {
@@ -68,7 +63,7 @@ export const Containers = {
 export const Inputs = {
   text: {
     padding: 20,
-    backgroundColor: Colors.input,
+    backgroundColor: Colors.gray,
     width: "100%",
     maxWidth: "80%",
     borderRadius: 10,
@@ -77,7 +72,3 @@ export const Inputs = {
     color: Colors.dark,
   },
 };
-
-// export const PrimaryButton = {
-//   backgroundColor: "blue",
-// };

@@ -1,8 +1,7 @@
-import { StyleSheet } from "react-native";
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ArticlesScreen from "./ArticlesScreen";
 import ArticlesDetailsScreen from "./ArticlesDetailsScreen";
+import { Colors } from "../../styles/Theme";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,17 +11,15 @@ const DiscoverScreen = ({ navigation }) => {
       <Stack.Screen
         name="Articles"
         component={ArticlesScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: true, headerTintColor: Colors.dark }}
       />
       <Stack.Screen
         name="ArticlesDetails"
         component={ArticlesDetailsScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: true, headerTintColor: Colors.dark }}
       />
     </Stack.Navigator>
   );
 };
 
 export default DiscoverScreen;
-
-const styles = StyleSheet.create({});

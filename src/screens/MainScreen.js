@@ -1,5 +1,3 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React from "react";
 import ProfileScreen from "./ProfileScreen";
 import DiscoverScreen from "./discoverScreens/DiscoverScreen";
 import HomeScreen from "./homeScreens/HomeScreen";
@@ -68,5 +66,3 @@ const MainScreen = ({ navigation }) => {
 };
 
 export default MainScreen;
-
-const styles = StyleSheet.create({});

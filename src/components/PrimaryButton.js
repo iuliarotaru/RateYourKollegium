@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Buttons, TextHierarchy } from "../styles/Theme";
+import CustomText from "./CustomText";
 
 const PrimaryButton = ({ onPress, title, style }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <CustomText style={styles.buttonText}>{title}</CustomText>
     </TouchableOpacity>
   );
 };

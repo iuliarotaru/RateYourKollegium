@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Alert } from "react-native";
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import { StyleSheet, View, Alert, TouchableOpacity } from "react-native";
 import { Colors } from "../styles/Theme";
 import CustomBackgroundImage from "./CustomBackgroundImage";
 import { FontAwesome } from "@expo/vector-icons";
 import PrimaryButton from "./PrimaryButton";
 import StarRating from "./StarRating";
+import CustomText from "./CustomText";
+
 import {
   saveKollegium,
   removeSavedKollegium,
@@ -88,7 +88,9 @@ const KollegiumCard = ({
             </View>
 
             <View style={styles.backgroundImageTitleContainer}>
-              <Text style={styles.kollegiumName}>{kollegium?.name}</Text>
+              <CustomText style={styles.kollegiumName}>
+                {kollegium?.name}
+              </CustomText>
             </View>
           </CustomBackgroundImage>
         </View>
@@ -121,14 +123,17 @@ const KollegiumCard = ({
           }
         >
           <View style={styles.priceAndReviewsContainer}>
-            <Text>{`${kollegium?.priceMin} - ${kollegium?.priceMax} kr.`}</Text>
-            <Text>{`(${kollegium?.comments.length} reviews)`}</Text>
+            <CustomText>{`${kollegium?.priceMin} - ${kollegium?.priceMax} kr.`}</CustomText>
+            <CustomText>{`(${kollegium?.comments.length} reviews)`}</CustomText>
           </View>
           <View style={styles.addressContainer}>
-            <Text>
+            <CustomText>
               <FontAwesome name={"map-marker"} size={20} />
-            </Text>
-            <Text> {`${kollegium?.address}, ${kollegium?.postalCode}`}</Text>
+            </CustomText>
+            <CustomText>
+              {" "}
+              {`${kollegium?.address}, ${kollegium?.postalCode}`}
+            </CustomText>
           </View>
         </View>
       </View>
@@ -163,7 +168,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   saveIcon: {
-    backgroundColor: Colors.pinkTransparent,
+    backgroundColor: Colors.lightPink,
     borderRadius: 10,
     padding: 10,
     marginTop: 10,

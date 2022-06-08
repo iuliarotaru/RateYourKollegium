@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { useEffect } from "react";
 import { auth } from "../config/firebase";
 import { useRecoilState } from "recoil";
@@ -15,6 +8,7 @@ import { getUser } from "../functions/ProfileFunctions";
 import { KollegiumCard } from "../components/KollegiumCard";
 import PrimaryButton from "../components/PrimaryButton";
 import KollegiumSavedCard from "../components/KollegiumSavedCard";
+import CustomText from "../components/CustomText";
 
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useRecoilState(userAtom);
@@ -52,14 +46,14 @@ const ProfileScreen = ({ navigation }) => {
       <View style={styles.container}>
         {user && (
           <>
-            <Text style={styles.profileTitle}>Username</Text>
-            <Text style={styles.profileText}>{user?.username}</Text>
+            <CustomText style={styles.profileTitle}>Username</CustomText>
+            <CustomText style={styles.profileText}>{user?.username}</CustomText>
 
-            <Text style={styles.profileTitle}>Email</Text>
-            <Text style={styles.profileText}>{user?.email}</Text>
+            <CustomText style={styles.profileTitle}>Email</CustomText>
+            <CustomText style={styles.profileText}>{user?.email}</CustomText>
 
-            <Text style={styles.profileTitle}>School</Text>
-            <Text style={styles.profileText}>{user?.school}</Text>
+            <CustomText style={styles.profileTitle}>School</CustomText>
+            <CustomText style={styles.profileText}>{user?.school}</CustomText>
 
             <PrimaryButton
               onPress={() => auth.signOut()}
@@ -72,9 +66,9 @@ const ProfileScreen = ({ navigation }) => {
               }}
             ></PrimaryButton>
 
-            <Text style={[styles.profileTitle, { marginBottom: 10 }]}>
+            <CustomText style={[styles.profileTitle, { marginBottom: 10 }]}>
               Saved Kollegiums ({user.savedKollegiums.length})
-            </Text>
+            </CustomText>
 
             <View style={styles.savedKollegiumsList}>
               {user?.savedKollegiums.map((savedKollegium) => {

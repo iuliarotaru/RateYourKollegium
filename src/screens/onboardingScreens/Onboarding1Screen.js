@@ -1,16 +1,20 @@
-import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Image, SafeAreaView } from "react-native";
 import { Containers, TextHierarchy } from "../../styles/Theme";
 import PrimaryButton from "../../components/PrimaryButton";
+import CustomText from "../../components/CustomText";
 
 const Onboarding1Screen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require("../../images/logo.png")}
+        source={require("../../images/onboarding1.png")}
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={styles.tagline}>Onboarding1Screen</Text>
+      <CustomText style={styles.tagline}>
+        Discover a generous list of kollegiums from all over Denmark and filter
+        it by your priorities.
+      </CustomText>
       <PrimaryButton
         onPress={() => navigation.replace("Onboarding2")}
         title="Next"

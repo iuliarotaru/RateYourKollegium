@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Modal,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import { useState, useEffect } from "react";
 import { getImageUrl } from "../functions/KollegiumsFunctions";
-import { ActivityIndicator, TouchableOpacity } from "react-native";
-import { Modal } from "react-native";
 import ImageViewer from "react-native-image-zoom-viewer";
 
 const CustomImage = ({ path, width, height }) => {
@@ -29,7 +32,7 @@ const CustomImage = ({ path, width, height }) => {
 
   return (
     <View>
-      {image.length > 0 && (
+      {image?.length > 0 && (
         <View>
           <TouchableOpacity onPress={() => setShowFullScreen(true)}>
             <Image

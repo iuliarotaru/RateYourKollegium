@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Containers } from "../../styles/Theme";
 import PrimaryButton from "../../components/PrimaryButton";
+import CustomText from "../../components/CustomText";
 
 const AuthScreen = ({ navigation }) => {
   return (
@@ -18,7 +18,7 @@ const AuthScreen = ({ navigation }) => {
         style={{ marginBottom: 20 }}
       />
       <TouchableOpacity onPress={() => navigation.replace("Main")}>
-        <Text>Continue without registering</Text>
+        <CustomText>Continue without registering</CustomText>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -1,22 +1,23 @@
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
   TextInput,
   Image,
   Keyboard,
   Alert,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
 import { userAtom } from "../atoms/UserAtom";
 import { useRecoilState } from "recoil";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
+import { FontAwesome } from "@expo/vector-icons";
 import StarRating from "./StarRating";
 import KollegiumComment from "./KollegiumComment";
 import PrimaryButton from "./PrimaryButton";
 import * as ImagePicker from "expo-image-picker";
 import { addCommentsToKollegium } from "../functions/KollegiumsFunctions";
+import { Colors } from "../styles/Theme";
+import CustomText from "./CustomText";
 
 const KollegiumComments = ({
   givenComment,
@@ -91,7 +92,9 @@ const KollegiumComments = ({
         <View>
           <View style={styles.writeReview}>
             <View style={styles.writeReviewTopButton}>
-              <Text>{`Reviews(${kollegium?.comments.length})`}</Text>
+              <CustomText
+                style={styles.sectionTitle}
+              >{`Reviews(${kollegium?.comments.length})`}</CustomText>
               <StarRating rating={kollegiumRating} setRating={null} />
             </View>
 
@@ -103,26 +106,52 @@ const KollegiumComments = ({
           </View>
           {writeReview && (
             <View style={styles.writeReview}>
-              <Button
-                onPress={() => handleFileInput()}
-                title={commentImageUri ? "Remove Image" : "Upload Image"}
-              ></Button>
+              <CustomText style={styles.sectionTitle}>
+                Add an image of the kollegium
+              </CustomText>
+              <TouchableOpacity onPress={() => handleFileInput()}>
+                <View style={styles.imageUploadContainer}>
+                  <FontAwesome name="camera" size={25} />
+                  <CustomText style={styles.imageUploadText}>
+                    {commentImageUri
+                      ? "Click here to remove"
+                      : "Click here to upload"}
+                  </CustomText>
+                </View>
+              </TouchableOpacity>
               {commentImageUri && (
                 <Image
                   source={{ uri: commentImageUri }}
-                  style={{ width: 200, height: 200 }}
+                  style={styles.commentImage}
                 />
               )}
+              <CustomText style={[styles.sectionTitle]}>
+                Write a review
+              </CustomText>
               <TextInput
                 onChangeText={setComment}
                 value={comment}
-                placeholder="Add a comment"
+                placeholder="Please write a descriptive review based on your experience"
+                style={styles.commentInput}
+                multiline
+                numberOfLines={20}
               />
-              <StarRating rating={rating} setRating={setRating} />
-              <Button
-                onPress={() => handleComment()}
-                title="Add a comment"
-              ></Button>
+              <CustomText style={[styles.sectionTitle]}>
+                Rate your overall experience
+              </CustomText>
+
+              <View style={styles.commentRatingContainer}>
+                <StarRating rating={rating} setRating={setRating} size={25} />
+                <PrimaryButton
+                  onPress={() => handleComment()}
+                  title="Post"
+                  style={{
+                    width: "fit-content",
+                    paddingHorizontal: 40,
+                    borderRadius: 10,
+                  }}
+                />
+              </View>
             </View>
           )}
         </View>
@@ -140,6 +169,10 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 15,
   },
+  sectionTitle: {
+    fontWeight: "bold",
+    fontSize: 15,
+  },
   writeReview: {
     marginHorizontal: 20,
     marginVertical: 20,
@@ -150,7 +183,35 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: "center",
   },
-  writeReview: {
-    marginHorizontal: 20,
+  imageUploadContainer: {
+    backgroundColor: "#F9EFE6",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 25,
+    borderRadius: 20,
+    marginVertical: 20,
+  },
+  imageUploadText: {
+    marginTop: 10,
+    color: "#666666",
+  },
+  commentImage: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  commentInput: {
+    backgroundColor: Colors.light,
+    padding: 20,
+    borderRadius: 25,
+    minHeight: 125,
+    paddingTop: 25,
+    marginVertical: 20,
+  },
+  commentRatingContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
   },
 });

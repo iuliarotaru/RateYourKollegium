@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Colors } from "../styles/Theme";
 import CustomBackgroundImage from "./CustomBackgroundImage";
+import CustomText from "./CustomText";
 
 //example stateless component
 const KollegiumSavedCard = ({ kollegium }) => {
@@ -12,7 +13,9 @@ const KollegiumSavedCard = ({ kollegium }) => {
           style={styles.image}
           resizeMode="cover"
         >
-          <Text style={styles.kollegiumName}>{kollegium?.name}</Text>
+          <CustomText style={styles.kollegiumName}>
+            {kollegium?.name}
+          </CustomText>
         </CustomBackgroundImage>
       </View>
     </View>

@@ -1,6 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Button } from "react-native";
-import React from "react";
-import { ActivityIndicator } from "react-native";
+import { SafeAreaView, ActivityIndicator } from "react-native";
 import { useEffect } from "react";
 import { auth } from "../config/firebase";
 import { getData } from "../functions/LocalStorageFunctions";
@@ -41,5 +39,3 @@ const LoadingScreen = ({ navigation }) => {
 };
 
 export default LoadingScreen;
-
-const styles = StyleSheet.create({});
