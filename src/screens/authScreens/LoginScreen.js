@@ -10,6 +10,7 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //Handle login functionality
   const handleLogin = () => {
     login(email, password);
   };

@@ -17,6 +17,7 @@ const RegisterScreen = ({ navigation }) => {
   const [contractDetails, setContractDetails] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  //Handle register functionality
   const handleRegister = async () => {
     if (!isLoading) {
       setIsLoading(true);
@@ -25,6 +26,7 @@ const RegisterScreen = ({ navigation }) => {
     }
   };
 
+  //Handle upload of the contract
   const handleFileInput = async () => {
     if (contractDetails) {
       setContract(null);

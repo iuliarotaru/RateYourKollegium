@@ -8,11 +8,13 @@ import { useEffect } from "react";
 const ArticlesScreen = ({ navigation }) => {
   const [articles, setArticles] = useRecoilState(articlesAtom);
 
+  //Get all articles
   useEffect(() => {
     const unsubscribe = getArticles(setArticles);
     return unsubscribe;
   }, []);
 
+  //Render function used inside FlatList
   const renderArticle = ({ item }) => (
     <View style={styles.articleContainer}>
       <ArticleCard

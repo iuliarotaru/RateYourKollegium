@@ -4,11 +4,13 @@ import { Colors } from "../styles/Theme";
 import CustomText from "./CustomText";
 
 const KollegiumContent = ({ kollegium }) => {
+  //Open URL when clicked
   const handleReadMoreLink = (url) => {
     Linking.openURL(url).catch((err) =>
       console.error("Couldn't load page", err)
     );
   };
+
   return (
     <View style={styles.detailsContainer}>
       <View>

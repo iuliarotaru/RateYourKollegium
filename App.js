@@ -23,9 +23,12 @@ import {
 } from "@expo-google-fonts/mulish";
 import { Colors } from "./src/styles/Theme";
 
+//Create a stack navigator for the navigations
 const Stack = createNativeStackNavigator();
 
+//Entry point of the solution
 export default function App() {
+  //Load fonts
   let [fontsLoaded] = useFonts({
     Mulish_400Regular,
     Mulish_700Bold,
@@ -36,6 +39,7 @@ export default function App() {
   }
 
   return (
+    //RecoilRoot required by RecoilJS
     <RecoilRoot>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>

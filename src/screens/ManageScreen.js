@@ -1,10 +1,11 @@
 import { SafeAreaView } from "react-native";
 import CustomText from "../components/CustomText";
 
+//Work in progress - Admin only screen
 const ManageScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <CustomText>manage screen</CustomText>
+      <CustomText>Manage screen</CustomText>
     </SafeAreaView>
   );
 };

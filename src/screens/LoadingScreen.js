@@ -6,6 +6,8 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/UserAtom";
 import { getUser } from "../functions/AuthFunctions";
 
+//First screen loaded in the app
+//Redirect the user based on its auth status
 const LoadingScreen = ({ navigation }) => {
   const [user, setUser] = useRecoilState(userAtom);
   useEffect(() => {

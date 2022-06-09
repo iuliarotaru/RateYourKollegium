@@ -12,6 +12,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 
+//Get all kollegiums
 export const getKollegiums = (setKollegiums) => {
   const kollegiumsUnsubscribe = onSnapshot(
     collection(db, "kollegiums"),
@@ -26,6 +27,7 @@ export const getKollegiums = (setKollegiums) => {
   return kollegiumsUnsubscribe;
 };
 
+//Add comment to kollegium
 export const addCommentsToKollegium = async (
   comment,
   image,
@@ -37,12 +39,14 @@ export const addCommentsToKollegium = async (
     //Reference to the current kollegium
     const kollegiumRef = doc(db, "kollegiums", kollegiumId);
 
+    //If image exists, upload it first
     let fileSnapshot = null;
     if (image) {
       const storageRef = ref(storage, `comments/${uuidv4()}`);
       fileSnapshot = await uploadBytes(storageRef, image);
     }
 
+    //Add the comment to the kollegium
     await updateDoc(kollegiumRef, {
       comments: arrayUnion({
         createdAt: new Date(),
@@ -57,6 +61,7 @@ export const addCommentsToKollegium = async (
   }
 };
 
+//Add kollegium to user's saved kollegiums
 export const saveKollegium = async (userId, kollegiumId) => {
   try {
     const userRef = doc(db, "usersData", userId);
@@ -69,6 +74,7 @@ export const saveKollegium = async (userId, kollegiumId) => {
   }
 };
 
+//Remove kollegium from user's saved kollegiums
 export const removeSavedKollegium = async (userId, kollegiumId) => {
   try {
     const userRef = doc(db, "usersData", userId);
@@ -81,6 +87,7 @@ export const removeSavedKollegium = async (userId, kollegiumId) => {
   }
 };
 
+//Fetch image url from path
 export const getImageUrl = async (path) => {
   try {
     return await getDownloadURL(ref(storage, path));

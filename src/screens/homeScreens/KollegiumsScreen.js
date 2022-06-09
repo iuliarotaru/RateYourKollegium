@@ -41,11 +41,13 @@ const KollegiumsScreen = ({ navigation }) => {
 
   const [showFilters, setShowFilters] = useState(false);
 
+  //Get all kollegiums
   useEffect(() => {
     const unsubscribe = getKollegiums(setKollegiums);
     return unsubscribe;
   }, []);
 
+  //Filter all the kollegiums when the kollegiums or kollegiumsFilters states change
   useEffect(() => {
     const filtered = kollegiums.filter((kollegium) => {
       return kollegiumsFilters.every((f) => f(kollegium));
@@ -54,6 +56,7 @@ const KollegiumsScreen = ({ navigation }) => {
     setFilteredKollegiums(filtered);
   }, [kollegiums, kollegiumsFilters]);
 
+  //Function for rendering a single kollegium used inside FlatList
   const renderKollegium = ({ item }) => (
     <KollegiumCard
       onPress={() =>
@@ -131,6 +134,7 @@ const KollegiumsScreen = ({ navigation }) => {
     Keyboard.dismiss();
   };
 
+  //Handle reset filter functionality
   const handleResetFilter = () => {
     setKollegiumsFilters([]);
     setKollegiumsSelectedFilters({});

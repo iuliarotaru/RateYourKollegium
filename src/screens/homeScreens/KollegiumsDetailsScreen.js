@@ -16,17 +16,22 @@ const KollegiumsDetailsScreen = ({ navigation, route }) => {
   const [commentsCoords, setCommentsCoords] = useState(null);
   const [scrollViewRef, setScrollViewRef] = useState();
 
+  //kollegiumId is passed through the navigation
   const kollegiumId = route.params.kollegiumId;
 
   useEffect(() => {
+    //Retrieve the current kollegium based on its id
     const ourKollegium = kollegiums.find((data) => {
       return data.id === kollegiumId;
     });
     setKollegium(ourKollegium);
 
+    //Get all reviews with a rating higher than 0
     const commentsWithRating = ourKollegium.comments.filter((comment) => {
       return comment.rating > 0;
     });
+
+    //Calculate the average star rating
     const kollegiumRatingStars =
       commentsWithRating.reduce((sum, comment) => sum + comment.rating, 0) /
       commentsWithRating.length;

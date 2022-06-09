@@ -8,7 +8,7 @@ const WelcomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Image
         source={require("../../images/logo.png")}
-        style={{ height: 200, maxWidth: "100%", marginBottom: 20 }}
+        style={{ height: 150, maxWidth: "50%", marginBottom: 20 }}
         resizeMode="contain"
       />
       <CustomText style={styles.tagline}>

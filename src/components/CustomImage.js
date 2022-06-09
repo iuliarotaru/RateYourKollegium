@@ -14,6 +14,7 @@ const CustomImage = ({ path, width, height }) => {
   const [image, setImage] = useState("");
   const [showFullScreen, setShowFullScreen] = useState(false);
 
+  //Fetch the image from url when the component is mounted
   useEffect(() => {
     let isMounted = true;
 
@@ -40,6 +41,7 @@ const CustomImage = ({ path, width, height }) => {
               style={{ width: width, height: height }}
             />
           </TouchableOpacity>
+          {/* Image Lightbox implementation */}
           <Modal
             visible={showFullScreen}
             transparent={true}

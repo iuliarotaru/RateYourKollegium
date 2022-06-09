@@ -5,6 +5,7 @@ import { getImageUrl } from "../functions/KollegiumsFunctions";
 const CustomBackgroundImage = ({ path, children, style }) => {
   const [image, setImage] = useState("");
 
+  //Fetch the image from url when the component is mounted
   useEffect(() => {
     let isMounted = true;
 

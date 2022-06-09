@@ -9,6 +9,7 @@ import { useState } from "react";
 const ResetPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
 
+  //Handle reset password functionality
   const handleResetPassword = async () => {
     const success = await resetPassword(email);
     if (success) {

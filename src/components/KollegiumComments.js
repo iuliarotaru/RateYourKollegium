@@ -25,15 +25,17 @@ const KollegiumComments = ({
   setCommentsCoords,
   kollegiumRating,
 }) => {
+  //Global States
   const [user, setUser] = useRecoilState(userAtom);
 
+  //Component States
   const [comment, setComment] = useState("");
   const [commentImage, setCommentImage] = useState(null);
   const [commentImageUri, setCommentImageUri] = useState(null);
   const [rating, setRating] = useState(0);
-
   const [writeReview, setWriteReview] = useState(false);
 
+  //Handle commment functionality
   const handleComment = () => {
     Keyboard.dismiss();
     if (comment.length > 0) {
@@ -53,6 +55,7 @@ const KollegiumComments = ({
     }
   };
 
+  //Handle file uploadxd
   const handleFileInput = async () => {
     if (commentImageUri) {
       setCommentImage(null);
@@ -73,6 +76,7 @@ const KollegiumComments = ({
     }
   };
 
+  //Toggle writeReview state in order to show/hide write review component
   const toggleWriteReviewVisibility = () => {
     setWriteReview(!writeReview);
   };

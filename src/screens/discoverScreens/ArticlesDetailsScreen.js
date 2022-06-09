@@ -17,9 +17,12 @@ const ArticlesDetailsScreen = ({ navigation, route }) => {
 
   const [article, setArticle] = useState(null);
 
+  //articleId is passed through the navigation
   const articleId = route.params.articleId;
 
   useEffect(() => {
+    //Get the article based on the articleId
+
     const ourArticle = articles.find((data) => {
       return data.id === articleId;
     });

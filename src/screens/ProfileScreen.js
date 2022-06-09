@@ -14,6 +14,7 @@ const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useRecoilState(userAtom);
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
 
+  //Get user's data
   useEffect(() => {
     if (user) {
       const unsubscribe = getUser(user, setUser);
@@ -21,24 +22,11 @@ const ProfileScreen = ({ navigation }) => {
     }
   }, []);
 
+  //Redirect to KollegiumsDetails when a saved kollegium is pressed
   const handleSavedKollegiumPress = (id) => {
     navigation.navigate("KollegiumsDetails", {
       kollegiumId: id,
     });
-  };
-
-  const renderKollegium = ({ item }) => {
-    const kollegium = kollegiums.find((k) => k.id === item);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          handleSavedKollegiumPress(kollegium.id);
-        }}
-        style={styles.savedKollegiumContainer}
-      >
-        <KollegiumSavedCard kollegium={kollegium} />
-      </TouchableOpacity>
-    );
   };
 
   return (
@@ -71,27 +59,30 @@ const ProfileScreen = ({ navigation }) => {
               {user && user.savedKollegiums ? user.savedKollegiums.length : 0})
             </CustomText>
 
+            {/* Show all saved kollegiums */}
             <View style={styles.savedKollegiumsList}>
-              {user && user?.savedKollegiums.map((savedKollegium) => {
-                const kollegium = kollegiums.find(
-                  (k) => k.id === savedKollegium
-                );
-                return (
-                  <TouchableOpacity
-                    onPress={() => {
-                      handleSavedKollegiumPress(kollegium.id);
-                    }}
-                    style={styles.savedKollegiumContainer}
-                    key={`saved-kollegium-${kollegium.id}-${Math.random()}`}
-                  >
-                    <KollegiumSavedCard kollegium={kollegium} />
-                  </TouchableOpacity>
-                );
-              })}
+              {user &&
+                user?.savedKollegiums.map((savedKollegium) => {
+                  const kollegium = kollegiums.find(
+                    (k) => k.id === savedKollegium
+                  );
+                  return (
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleSavedKollegiumPress(kollegium.id);
+                      }}
+                      style={styles.savedKollegiumContainer}
+                      key={`saved-kollegium-${kollegium.id}-${Math.random()}`}
+                    >
+                      <KollegiumSavedCard kollegium={kollegium} />
+                    </TouchableOpacity>
+                  );
+                })}
             </View>
           </>
         )}
 
+        {/* If user is not signed in, show sign up or log in button */}
         {!user && (
           <PrimaryButton
             onPress={() => navigation.replace("Auth")}

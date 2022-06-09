@@ -9,10 +9,13 @@ import { ref, uploadBytes } from "firebase/storage";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { getErrorMessage } from "./HelperFunctions";
 
+//Register user functinoality
 export const register = async (username, email, password, school, contract) => {
   try {
+    //Create user account
     await createUserWithEmailAndPassword(auth, email, password);
 
+    //Update its data inside the "usersData" collection
     const currentUser = auth.currentUser;
     const storageRef = ref(storage, `contracts/${currentUser.uid}`);
     const fileSnapshot = await uploadBytes(storageRef, contract);
@@ -29,6 +32,7 @@ export const register = async (username, email, password, school, contract) => {
   }
 };
 
+//Login user functinoality
 export const login = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
@@ -37,6 +41,7 @@ export const login = async (email, password) => {
   }
 };
 
+//Get current user and all its data
 export const getUser = async () => {
   try {
     const docRef = doc(db, "usersData", auth.currentUser.uid);
@@ -56,6 +61,7 @@ export const getUser = async () => {
   }
 };
 
+//Reset current user's password
 export const resetPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);

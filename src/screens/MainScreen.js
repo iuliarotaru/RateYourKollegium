@@ -10,6 +10,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
+//Main Screen Bottom Navigation
 const MainScreen = ({ navigation }) => {
   const [user, setUser] = useRecoilState(userAtom);
 

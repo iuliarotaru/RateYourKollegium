@@ -1,5 +1,6 @@
 import { Text } from "react-native";
 
+//CustomText component used to apply the font inside the whole app
 export default CustomText = (props) => {
   return (
     <Text

@@ -25,6 +25,7 @@ const KollegiumCard = ({
 
   const toggleSaveKollegium = async () => {
     try {
+      //If the kollegium is not already saved, save it
       if (
         user &&
         user.savedKollegiums &&
@@ -35,7 +36,9 @@ const KollegiumCard = ({
           ...user,
           savedKollegiums: [...user.savedKollegiums, kollegium.id],
         });
-      } else {
+      }
+      //If the kollegium is already saved, remove it
+      else {
         //Remove saved kollegium
         await removeSavedKollegium(user.uid, kollegium.id);
 

@@ -1,3 +1,4 @@
+//Theme Colors
 export const Colors = {
   primary: "#EF8872",
   secondary: "#3C8987",
@@ -12,6 +13,7 @@ export const Colors = {
   red: "red",
 };
 
+//Theme Text
 export const TextHierarchy = {
   body: {
     fontSize: 24,
@@ -36,6 +38,7 @@ export const TextHierarchy = {
   },
 };
 
+//Theme Buttons
 export const Buttons = {
   primary: {
     backgroundColor: Colors.primary,
@@ -53,6 +56,7 @@ export const Buttons = {
   },
 };
 
+//Theme Containers
 export const Containers = {
   main: {
     flex: 1,
@@ -62,6 +66,7 @@ export const Containers = {
   },
 };
 
+//Theme Inputs
 export const Inputs = {
   text: {
     padding: 20,

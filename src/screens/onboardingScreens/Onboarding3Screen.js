@@ -6,7 +6,8 @@ import CustomText from "../../components/CustomText";
 
 const Onboarding3Screen = ({ navigation }) => {
   const handleOnPress = () => {
-    storeData("onboarding", false); //true TODO: change back
+    //Save that the onboarding has been completed
+    storeData("onboarding", true);
     navigation.replace("Auth");
   };
 
