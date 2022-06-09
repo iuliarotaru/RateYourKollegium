@@ -154,7 +154,7 @@ const KollegiumsScreen = ({ navigation }) => {
       </CustomText>
       <FlatList
         data={filteredKollegiums}
-        keyExtractor={(kollegium) => `${kollegium.id}-${Math.random()}`}
+        keyExtractor={(kollegium) => kollegium.id}
         renderItem={renderKollegium}
       />
       {showFilters && (

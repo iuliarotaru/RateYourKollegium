@@ -32,7 +32,7 @@ const ArticlesScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={articles}
-        keyExtractor={(article) => `${article.id}-${Math.random()}`}
+        keyExtractor={(article) => article.id}
         renderItem={renderArticle}
       />
     </SafeAreaView>

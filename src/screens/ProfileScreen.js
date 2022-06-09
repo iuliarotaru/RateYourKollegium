@@ -72,7 +72,7 @@ const ProfileScreen = ({ navigation }) => {
                         handleSavedKollegiumPress(kollegium.id);
                       }}
                       style={styles.savedKollegiumContainer}
-                      key={`saved-kollegium-${kollegium.id}-${Math.random()}`}
+                      key={kollegium.id}
                     >
                       <KollegiumSavedCard kollegium={kollegium} />
                     </TouchableOpacity>
