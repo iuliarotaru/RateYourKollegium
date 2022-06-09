@@ -6,6 +6,7 @@ import { userAtom } from "../../atoms/UserAtom";
 import KollegiumCard from "../../components/KollegiumCard";
 import KollegiumContent from "../../components/KollegiumContent";
 import KollegiumComments from "../../components/KollegiumComments";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const KollegiumsDetailsScreen = ({ navigation, route }) => {
   const [kollegiums, setKollegiums] = useRecoilState(kollegiumsAtom);
@@ -33,7 +34,7 @@ const KollegiumsDetailsScreen = ({ navigation, route }) => {
   }, [kollegiums]);
 
   return (
-    <ScrollView
+    <KeyboardAwareScrollView
       keyboardShouldPersistTaps="handled"
       ref={(ref) => {
         setScrollViewRef(ref);
@@ -55,7 +56,7 @@ const KollegiumsDetailsScreen = ({ navigation, route }) => {
         setCommentsCoords={setCommentsCoords}
         kollegiumRating={kollegiumRating}
       />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 

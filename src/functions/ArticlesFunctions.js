@@ -10,7 +10,7 @@ export const getArticles = (setArticles) => {
       const articlesData = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      setArticles([...articlesData, ...articlesData, ...articlesData]);
+      setArticles(articlesData);
     }
   );
 

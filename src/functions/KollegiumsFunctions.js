@@ -19,7 +19,7 @@ export const getKollegiums = (setKollegiums) => {
       const kollegiumsData = snapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      setKollegiums([...kollegiumsData, ...kollegiumsData, ...kollegiumsData]);
+      setKollegiums(kollegiumsData);
     }
   );
 

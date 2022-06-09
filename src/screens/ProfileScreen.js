@@ -67,11 +67,12 @@ const ProfileScreen = ({ navigation }) => {
             ></PrimaryButton>
 
             <CustomText style={[styles.profileTitle, { marginBottom: 10 }]}>
-              Saved Kollegiums ({user.savedKollegiums.length})
+              Saved Kollegiums (
+              {user && user.savedKollegiums ? user.savedKollegiums.length : 0})
             </CustomText>
 
             <View style={styles.savedKollegiumsList}>
-              {user?.savedKollegiums.map((savedKollegium) => {
+              {user && user?.savedKollegiums.map((savedKollegium) => {
                 const kollegium = kollegiums.find(
                   (k) => k.id === savedKollegium
                 );

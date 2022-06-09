@@ -25,7 +25,11 @@ const KollegiumCard = ({
 
   const toggleSaveKollegium = async () => {
     try {
-      if (!user?.savedKollegiums.includes(kollegium.id)) {
+      if (
+        user &&
+        user.savedKollegiums &&
+        !user.savedKollegiums.includes(kollegium.id)
+      ) {
         await saveKollegium(user.uid, kollegium.id);
         setUser({
           ...user,
@@ -72,13 +76,13 @@ const KollegiumCard = ({
                 >
                   <FontAwesome
                     name={
-                      user.saveKollegiums &&
+                      user.savedKollegiums &&
                       user?.savedKollegiums.includes(kollegium?.id)
                         ? "bookmark"
                         : "bookmark-o"
                     }
                     color={
-                      user.saveKollegiums &&
+                      user.savedKollegiums &&
                       user?.savedKollegiums.includes(kollegium?.id)
                         ? Colors.primary
                         : Colors.dark

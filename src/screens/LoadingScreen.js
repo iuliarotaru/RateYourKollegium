@@ -12,7 +12,6 @@ const LoadingScreen = ({ navigation }) => {
     const getOnboardingStatus = () => {
       auth.onAuthStateChanged(async (user) => {
         const onboardingStatus = await getData("onboarding"); //get onboarding status
-        console.log(`console log in loading: ${user}`);
         if (user) {
           const userData = await getUser();
           setUser(userData);
